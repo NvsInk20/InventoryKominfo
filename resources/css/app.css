@@ -1,0 +1,7 @@
+@import "/public/css/style.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+[x-cloak] {
+  display: none;
+}
