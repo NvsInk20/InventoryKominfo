@@ -8,8 +8,8 @@ Route::get('/', function () {
 Route::get('/status', function () {
     return view('status');
 });
-Route::get('/coba', function () {
-    return view('coba');
+Route::get('/riwayat', function () {
+    return view('riwayat');
 });
 Route::get('/inventory', function () {
     return view('inventory');
