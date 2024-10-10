@@ -16,8 +16,8 @@
 <body>
     <x-layout>
         <x-slot:title>{{ $title }}</x-slot:title>
-        @include('komponen.riwayat.dropdown')
-        @include('komponen.riwayat.tabel')
+        @include('komponen.PJawab.dropdown')
+        @include('komponen.PJawab.tabel')
 
     </x-layout>
     <!-- JavaScript untuk Toggle Details -->

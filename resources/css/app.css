@@ -1,5 +1,6 @@
 @import "/public/css/style.css";
 @import "/public/css/riwayat.css";
+@import "animate.css/animate.min.css"; /* Jika Anda menggunakan animate.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,5 +1,5 @@
 .table-container {
-    max-width: 1024px; /* Set max width */
+    max-width: 100%; /* Set max width */
     margin: 0 auto; /* Center align the table */
     padding: 0 20px;
     margin-top: 20px; /* Initial margin */
@@ -17,12 +17,15 @@ td {
 span {
     color: aliceblue;
 }
+footer span {
+    color: rgb(0, 0, 0);
+}
 
 .dropdown-container {
     display: flex;
     align-items: flex-start;
     padding: 20px;
-    margin-left: 20%;
+    margin-left: 10%;
     gap: 80px;
 }
 
@@ -30,8 +33,7 @@ span {
     flex: 1;
     background-color: #3489d2;
     border-radius: 7px;
-    border: solid #000 2px;
-    max-width: 16%; /* Adjust as needed */
+    max-width: 19%; /* Adjust as needed */
 }
 #red {
     margin-left: -2%;
