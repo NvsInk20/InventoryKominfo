@@ -123,7 +123,7 @@
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Number</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Jumlah</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Kategori</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Status</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
                     </tr>
                 </thead>
@@ -162,7 +162,10 @@
                             <p class="text-sm text-slate-500">3</p>
                         </td>
                         <td class="p-4 border-b text-center border-slate-200 py-5">
-                            <p class="text-sm text-slate-500">Barang</p>
+                            <button
+                                class="items-center justify-center bg-blue-600 rounded-xl text-center py-2 px-4 ml-6 max-w-max text-white">
+                                <i class="fas fa-check text-white mr-2"></i>Tersedia
+                            </button>
                         </td>
                         <td class="p-4 text-center border-b border-slate-200 py-5">
                             <button type="button" class="text-slate-500 hover:text-slate-700"
@@ -270,7 +273,10 @@
                             <p class="text-sm text-slate-500">1</p>
                         </td>
                         <td class="p-4 border-b text-center border-slate-200 py-5">
-                            <p class="text-sm text-slate-500">Kendaraan</p>
+                            <button
+                                class="items-center justify-center bg-blue-600 rounded-xl text-center py-2 px-4 ml-6 max-w-max text-white">
+                                <i class="fas fa-check text-white mr-2"></i>Tersedia
+                            </button>
                         </td>
                         <td class="p-4 text-center border-b border-slate-200 py-5">
                             <button type="button" class="text-slate-500 hover:text-slate-700"
@@ -378,7 +384,10 @@
                             <p class="text-sm text-slate-500">2</p>
                         </td>
                         <td class="p-4 border-b text-center border-slate-200 py-5">
-                            <p class="text-sm text-slate-500">Ruangan</p>
+                            <button
+                                class="items-center justify-center bg-red-600 rounded-xl text-center py-2 px-4 ml-6 max-w-max text-white">
+                                <i class="fas fa-check text-white mr-2"></i>Tidak Tersedia
+                            </button>
                         </td>
                         <td class="p-4 text-center border-b border-slate-200 py-5">
                             <button type="button" class="text-slate-500 hover:text-slate-700"
