@@ -1,4 +1,4 @@
-<footer class="main-footer border-t-2 border-yellow-300 w-full">
+<footer class="main-footer border-t-2 border-yellow-300 w-full mt-48">
     <div class="flex flex-col md:flex-row justify-between items-start space-y-4 md:space-y-0 px-16 py-8">
         <!-- Bagian kiri: Logo dan deskripsi -->
         <div class="flex items-center space-x-4">
