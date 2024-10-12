@@ -1,13 +1,22 @@
 <?php
 
+use App\Http\Controllers\login;
+use App\Http\Controllers\register;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function () {
-    return view('Login.login');
-});
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/register', [register::class, 'index']);
+Route::post('/register', [register::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('Admin.dashboard', ['title' => 'Dashboard']);
 });
