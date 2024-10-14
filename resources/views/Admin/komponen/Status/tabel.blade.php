@@ -8,7 +8,7 @@
          <div class="text-right ml-40" id="kiri">
              <button type="button"
                  class="border border-blue-800 font-bold text-blue-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-blue-700 focus:outline-none focus:shadow-outline">
-                 Add Items +
+                 <a href="/Add Items"> Add Items +</a>
              </button>
          </div>
          <div class="w-40 text-right ml-4" id="red">

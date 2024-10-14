@@ -71,6 +71,11 @@
                                         </div>
                                     @enderror
                                 </div>
+                                @if ($errors->has('login'))
+                                    <div class="alert alert-danger">
+                                        {{ $errors->first('login') }}
+                                    </div>
+                                @endif
                                 <div class="relative">
                                     <button
                                         class="bg-blue-500 hover:bg-blue-600 text-white rounded-md px-2 py-1 mt-3">Login</button>

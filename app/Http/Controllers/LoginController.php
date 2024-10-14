@@ -32,8 +32,8 @@ class LoginController extends Controller
         }
 
         // Jika gagal, kembali ke halaman login dengan pesan error
-        return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
-        ]);
+            return back()->withErrors([
+                'login' => 'Username atau Password tidak terdaftar.'
+                ])->onlyInput('username'); // Mengembalikan input username saja
     }
 }
