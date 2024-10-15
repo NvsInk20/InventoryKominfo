@@ -18,8 +18,10 @@ class CreateInventoriesTable extends Migration
             $table->integer('quantity');
             $table->enum('status', ['Tersedia', 'Tidak Tersedia']);
             $table->string('category');
-            $table->string('image_url');
+            $table->string('image_path');
+            $table->string('pdf_path');
             $table->integer('year');
+            $table->date('tanggal_peminjaman');
             $table->string('responsible');
             $table->timestamps();
         });
@@ -32,4 +34,4 @@ class CreateInventoriesTable extends Migration
     {
         Schema::dropIfExists('inventories');
     }
-};
+}

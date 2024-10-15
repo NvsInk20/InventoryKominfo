@@ -4,6 +4,7 @@ use App\Http\Controllers\login;
 use App\Http\Controllers\register;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InventoryController;
 
 
@@ -25,9 +26,19 @@ Route::get('/dashboard', function () {
 
 Route::get('/status barang', [InventoryController::class, 'index'])->name('Admin.inventory');
 
-Route::get('/Add Items', function () {
-    return view('Admin.formEdit', ['title' => 'Tambah Data']);
+Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
+Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
+Route::delete('/inventory/delete-selected', [InventoryController::class, 'deleteSelected'])->name('inventory.deleteSelected');
+Route::get('/status-barang/add-items', function () {
+return view('Admin.formAdd', ['title' => 'Tambah Data']);
 });
+Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
+// Rute untuk menampilkan form edit
+Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inventory.update');  // Rute untuk update data
+
+Route::get('/print-pdf/{id}', [InventoryController::class, 'printPDF'])->name('print.pdf');
+
+
 Route::get('/riwayat', function () {
     return view('Admin.riwayat', ['title' => 'Riwayat Barang']);
 });

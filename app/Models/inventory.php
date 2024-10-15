@@ -5,16 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class inventory extends Model
+class Inventory extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'name',
         'id_number',
         'quantity',
         'status',
         'category',
-        'image_url',
+        'image_path',
+        'pdf_path',
         'year',
+        'tanggal_peminjaman',
         'responsible',
     ];
 }
