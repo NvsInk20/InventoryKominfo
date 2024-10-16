@@ -45,7 +45,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <span class="text-sm text-white">
                     Copyright ©2024 Boyolali. Developed with love by
-                    <a href="https://tlab.co.id/" target="_blank" class="text-yellow-500">yUeMeS</a>
+                    <a href="https://informatika.ums.ac.id/" target="_blank" class="text-yellow-500">yUeMeS</a>
                 </span>
             </div>
         </div>
