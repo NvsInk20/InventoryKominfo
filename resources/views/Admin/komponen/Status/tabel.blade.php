@@ -9,7 +9,7 @@ use Carbon\Carbon;
             <p class="text-slate-500">Penanggung Jawab</p>
         </div>
         <div class="text-right ml-40" id="kiri">
-            <a href='/status-barang/add-items'>
+            <a href='/inventory/add-items'>
                 <button type="button"
                     class="border border-blue-800 font-bold text-blue-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-blue-700 focus:outline-none focus:shadow-outline">
                     Add Items +
@@ -126,9 +126,8 @@ use Carbon\Carbon;
                                                 <p>{{ $inventory->category }}</p>
                                             </div>
                                             <div>
-                                                <h3 class="font-bold">Tanggal Peminjaman</h3>
-                                                <p>{{ Carbon::parse($inventory->tanggal_peminjaman)->translatedFormat('d F Y') }}
-                                                </p>
+                                                <h3 class="font-bold">Keadaan Barang</h3>
+                                                <p>{{ $inventory->keadaan_barang }}</p>
                                             </div>
                                         </div>
                                         <!-- Bagian tombol -->

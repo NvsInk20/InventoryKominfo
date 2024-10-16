@@ -100,49 +100,71 @@
                     </div>
                 </fieldset>
 
+                <!-- Keadaan Barang -->
+                <fieldset class="relative z-0 w-full p-px mb-5">
+                    <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Keadaan Barang</legend>
+                    <div class="block pt-3 pb-2 space-x-4">
+                        <label>
+                            <input type="radio" name="keadaan_barang" value="Baik"
+                                {{ old('keadaan_barang', $inventory->keadaan_barang) == 'Baik' ? 'checked' : '' }}
+                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                required />
+                            Baik
+                        </label>
+                        <label>
+                            <input type="radio" name="keadaan_barang" value="Kurang Baik"
+                                {{ old('keadaan_barang', $inventory->keadaan_barang) == 'Kurang Baik' ? 'checked' : '' }}
+                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                required />
+                            Kurang Baik
+                        </label>
+                        <label>
+                            <input type="radio" name="keadaan_barang" value="Rusak Berat"
+                                {{ old('keadaan_barang', $inventory->keadaan_barang) == 'Rusak Berat' ? 'checked' : '' }}
+                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                required />
+                            Rusak Berat
+                        </label>
+                    </div>
+                </fieldset>
+
                 <!-- Upload Gambar -->
                 <div class="relative z-0 w-full mb-5">
-                    <label for="image" class="block mb-2 text-gray-700">Upload Gambar (kosongkan jika tidak ingin
-                        mengganti):</label>
                     <input type="file" name="image" accept="image/*" class="block w-full mt-2 border-gray-200">
                     @error('image')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
-                    @if ($inventory->image)
+                    @if ($inventory->image_path)
+                        <!-- Pastikan untuk memeriksa 'image_path' -->
                         <p class="mt-2 text-gray-500">Gambar saat ini: <img
-                                src="{{ asset('storage/' . $inventory->image) }}" alt="Image" width="100"></p>
+                                src="{{ asset('storage/' . $inventory->image_path) }}" alt="Image" width="100">
+                        </p>
                     @else
                         <p class="mt-2 text-red-500">Tidak ada gambar saat ini.</p>
                     @endif
+
                 </div>
 
                 <!-- Upload PDF -->
                 <div class="relative z-0 w-full mb-5">
-                    <label for="pdf" class="block mb-2 text-gray-700">Upload Surat (kosongkan jika tidak ingin
-                        mengganti):</label>
                     <input type="file" name="pdf" accept=".pdf" class="block w-full mt-2 border-gray-200">
                     @error('pdf')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
-                    @if ($inventory->pdf)
-                        <p class="mt-2 text-gray-500">File PDF saat ini: <a
-                                href="{{ asset('storage/' . $inventory->pdf) }}" target="_blank">Lihat PDF</a></p>
+                    @if ($inventory->pdf_path)
+                        <!-- Pastikan untuk memeriksa 'pdf_path' -->
+                        <p class="mt-2 text-gray-500">File PDF saat ini:
+                            {{-- <a
+                                href="{{ asset('storage/' . $inventory->pdf_path) }}" target="_blank">Lihat PDF</a> --}}
+                        </p>
+                        <p class="mt-2 text-gray-500">Nama file: {{ basename($inventory->pdf_path) }}</p>
+                        <!-- Menampilkan nama file PDF -->
                     @else
                         <p class="mt-2 text-red-500">Tidak ada PDF saat ini.</p>
                     @endif
+
                 </div>
 
-
-                <!-- Tanggal Peminjaman -->
-                <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="tanggal_peminjaman" id="date-input"
-                        value="{{ old('tanggal_peminjaman', $inventory->tanggal_peminjaman) }}" placeholder=" "
-                        onclick="this.setAttribute('type', 'date'); this.focus();"
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                        onblur="this.setAttribute('type', 'text'); checkDate(this);" />
-                    <label for="tanggal_peminjaman"
-                        class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tanggal Peminjaman</label>
-                </div>
 
                 <!-- Kategori -->
                 <div class="relative z-0 w-full mb-5">

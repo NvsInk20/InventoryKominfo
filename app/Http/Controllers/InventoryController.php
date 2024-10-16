@@ -10,15 +10,59 @@ class InventoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+   public function index(Request $request)
     {
-        // Ambil semua item inventory untuk dikirim ke view
-        $inventories = Inventory::all();
+        // Ambil parameter sorting
+        $sortType1 = $request->input('sort_type1', 'Sort by'); // Nilai default
+        $sortType2 = $request->input('sort_type2', 'Status'); // Nilai default
+
+        // Query dasar
+        $query = Inventory::query();
+
+        // Apply sort based on the dropdown choices
+        if ($sortType1 && $sortType1 !== 'Sort by') {
+            switch ($sortType1) {
+                case 'Barang':
+                    $query->where('category', 'Barang');
+                    break;
+                case 'Kendaraan':
+                    $query->where('category', 'Kendaraan');
+                    break;
+                case 'Ruangan':
+                    $query->where('category', 'Ruangan');
+                    break;
+            }
+        }
+
+        if ($sortType2 && $sortType2 !== 'Status') {
+            switch ($sortType2) {
+                case 'Tersedia':
+                    $query->where('status', 'Tersedia');
+                    break;
+                case 'Tidak Tersedia':
+                    $query->where('status', 'Tidak Tersedia');
+                    break;
+            }
+        }
+
+        // Ambil data yang sudah di-sortir
+        $inventories = $query->get();
+
+        // Cek apakah permintaan AJAX
+        if ($request->ajax()) {
+            return view('partials.inventoryTable', ['inventories' => $inventories]);
+        }
+
         return view('Admin.inventory', [
             'title' => 'Inventory',
             'inventories' => $inventories,
+            'sortType1' => $sortType1, // Menyimpan nilai dropdown ke view
+            'sortType2' => $sortType2, // Menyimpan nilai dropdown ke view
+            'activePage' => 'Admin.inventory',
         ]);
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +78,7 @@ class InventoryController extends Controller
             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'pdf' => 'required|file|mimes:pdf|max:2048',
             'year' => 'required|integer',
-            'tanggal_peminjaman' => 'required',
+            'keadaan_barang' => 'required|string|in:Baik,Kurang Baik,Rusak Berat',
             'responsible' => 'required|string|max:255',
         ]);
 
@@ -55,13 +99,13 @@ class InventoryController extends Controller
                 'image_path' => $imagePath, // Pastikan menggunakan 'image_path' jika sesuai dengan migrasi
                 'pdf_path' => $pdfPath, // Pastikan field ini ada di migrasi
                 'year' => $request->year,
-                'tanggal_peminjaman' => $request->tanggal_peminjaman,
+                'keadaan_barang' => $request->keadaan_barang,
                 'responsible' => $request->responsible,
             ]);
 
-            return redirect()->route('inventory.index')->with('success', 'Item berhasil ditambahkan.');
+            return redirect()->route('Admin.inventory')->with('success', 'Item berhasil ditambahkan.');
         } catch (\Exception $e) {
-            return redirect()->route('inventory.index')->with('error', 'Gagal menambahkan item: ' . $e->getMessage());
+            return redirect()->route('Admin.inventory')->with('error', 'Gagal menambahkan item: ' . $e->getMessage());
         }
     }
     public function printPDF($id)
@@ -74,7 +118,7 @@ class InventoryController extends Controller
         return response()->download($pdfPath, $fileName); // Return the file for download with just the filename
     }
 
-    return redirect()->route('inventory.index')->with('error', 'PDF tidak ditemukan.');
+    return redirect()->route('Admin.inventory')->with('error', 'PDF tidak ditemukan.');
 }
 
 
@@ -88,10 +132,10 @@ class InventoryController extends Controller
 
     if ($selectedIds) {
         Inventory::whereIn('id', $selectedIds)->delete();
-        return redirect()->route('inventory.index')->with('success', 'Items berhasil dihapus.');
+        return redirect()->route('Admin.inventory')->with('success', 'Items berhasil dihapus.');
     }
 
-    return redirect()->route('inventory.index')->with('error', 'Tidak ada item yang dipilih untuk dihapus.');
+    return redirect()->route('Admin.inventory')->with('error', 'Tidak ada item yang dipilih untuk dihapus.');
 }
 
 
@@ -104,10 +148,10 @@ class InventoryController extends Controller
 
         if ($inventory) {
             $inventory->delete();
-            return redirect()->route('inventory.index')->with('success', 'Item berhasil dihapus.');
+            return redirect()->route('Admin.inventory')->with('success', 'Item berhasil dihapus.');
         }
 
-        return redirect()->route('inventory.index')->with('error', 'Item tidak ditemukan.');
+        return redirect()->route('Admin.inventory')->with('error', 'Item tidak ditemukan.');
     }
     
 
@@ -137,7 +181,7 @@ public function update(Request $request, $id)
         'quantity' => 'required|integer|min:1',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'pdf' => 'nullable|mimes:pdf|max:10000',
-        'tanggal_peminjaman' => 'nullable|date',
+        'keadaan_barang' => 'required|string',
     ]);
 
     // Update data inventory
@@ -148,7 +192,7 @@ public function update(Request $request, $id)
     $inventory->status = $request->input('status');
     $inventory->category = $request->input('category');
     $inventory->quantity = $request->input('quantity');
-    $inventory->tanggal_peminjaman = $request->input('tanggal_peminjaman');
+    $inventory->keadaan_barang = $request->input('keadaan_barang');
 
     // Handle upload gambar jika ada file baru
     if ($request->hasFile('image')) {
@@ -176,7 +220,7 @@ public function update(Request $request, $id)
     $inventory->save();
 
     // Redirect ke halaman yang diinginkan
-    return redirect()->route('inventory.index')->with('success', 'Data berhasil diperbarui.');
+    return redirect()->route('Admin.inventory')->with('success', 'Data berhasil diperbarui.');
 }
 
 

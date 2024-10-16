@@ -21,7 +21,7 @@ class CreateInventoriesTable extends Migration
             $table->string('image_path');
             $table->string('pdf_path');
             $table->integer('year');
-            $table->date('tanggal_peminjaman');
+            $table->enum('keadaan_barang', ['Baik', 'Kurang Baik', 'Rusak Berat']);
             $table->string('responsible');
             $table->timestamps();
         });

@@ -18,7 +18,12 @@ class Inventory extends Model
         'image_path',
         'pdf_path',
         'year',
-        'tanggal_peminjaman',
+        'keadaan_barang',
         'responsible',
     ];
+    // // Definisi relasi ke model peminjam
+    // public function peminjams()
+    // {
+    //     return $this->hasMany(peminjam::class);
+    // }
 }
