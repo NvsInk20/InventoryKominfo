@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone_number', 12);
+            $table->string('category');
             $table->date('tanggal_peminjaman');
             $table->date('tanggal_pengembalian')->nullable();
             $table->string('image_path')->nullable(); // Menyimpan path gambar

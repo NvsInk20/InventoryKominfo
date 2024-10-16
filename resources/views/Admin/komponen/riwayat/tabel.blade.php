@@ -83,6 +83,10 @@ use Carbon\Carbon;
                                             <p>{{ $pinjam->name }}</p>
                                         </div>
                                         <div>
+                                            <h3 class="font-bold">Kategori</h3>
+                                            <p>{{ $pinjam->category }}</p>
+                                        </div>
+                                        <div>
                                             <h3 class="font-bold">Email</h3>
                                             <p>{{ $pinjam->email }}</p>
                                         </div>
@@ -106,13 +110,13 @@ use Carbon\Carbon;
                                         </div>
                                     </div>
                                     <div class="flex justify-end mt-6">
-                                        <a href="{{ route('pinjam.edit', $pinjam->id) }}">
+                                        <a href="{{ route('peminjam.edit', $pinjam->id) }}">
                                             <button type="button"
                                                 class="border border-green-400 font-bold text-green-400 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-green-400">
                                                 Edit
                                             </button>
                                         </a>
-                                        <form action="{{ route('pinjam.destroy', $pinjam->id) }}" method="POST"
+                                        <form action="{{ route('peminjam.destroy', $pinjam->id) }}" method="POST"
                                             id="deleteForm-{{ $pinjam->id }}"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus item ini?');">
                                             @csrf

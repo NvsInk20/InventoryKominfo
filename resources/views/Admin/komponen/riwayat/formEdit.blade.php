@@ -43,73 +43,66 @@
                 @csrf
                 @method('PUT')
 
+                <!-- Nama Peminjam -->
+                <div class="relative z-0 w-full mb-5">
+                    <input type="text" name="nama_peminjam"
+                        value="{{ old('nama_peminjam', $peminjam->nama_peminjam) }}" placeholder=" " required
+                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
+                    <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Nama
+                        Peminjam</label>
+                </div>
+
+                <!-- Email -->
+                <div class="relative z-0 w-full mb-5">
+                    <input type="email" name="email" value="{{ old('email', $peminjam->email) }}" placeholder=" "
+                        required
+                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
+                    <label for="year" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Email</label>
+                </div>
+
+                <!-- Nomor Telepon -->
+                <div class="relative z-0 w-full mb-5">
+                    <input type="number" name="phone_number" value="{{ old('phone_number', $peminjam->phone_number) }}"
+                        placeholder=" " required
+                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
+                    <label for="phone_number" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Nomor
+                        Telp</label>
+                </div>
+
                 <!-- Nama Produk -->
                 <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="name" value="{{ old('name', $inventory->name) }}" placeholder=" "
+                    <input type="text" name="name" value="{{ old('name', $peminjam->name) }}" placeholder=" "
                         required
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
                     <label for="name" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Nama
                         Produk</label>
                 </div>
-
-                <!-- Tahun Penggunaan -->
+                <!-- Kategori -->
                 <div class="relative z-0 w-full mb-5">
-                    <input type="number" name="year" value="{{ old('year', $inventory->year) }}" placeholder=" "
-                        required
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="year" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tahun
-                        Penggunaan</label>
+                    <select name="category" required
+                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200">
+                        <option value="" disabled hidden>Pilih Kategori</option>
+                        <option value="Barang" {{ old('category', $peminjam->category) == 'Barang' ? 'selected' : '' }}>
+                            Barang</option>
+                        <option value="Kendaraan"
+                            {{ old('category', $peminjam->category) == 'Kendaraan' ? 'selected' : '' }}>Kendaraan
+                        </option>
+                        <option value="Ruangan"
+                            {{ old('category', $peminjam->category) == 'Ruangan' ? 'selected' : '' }}>Ruangan</option>
+                    </select>
+                    <label for="category" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Pilih
+                        Kategori</label>
                 </div>
-
-                <!-- Penanggung Jawab -->
-                <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="responsible" value="{{ old('responsible', $inventory->responsible) }}"
-                        placeholder=" " required
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="responsible" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Penanggung
-                        Jawab</label>
-                </div>
-
-                <!-- ID Number -->
-                <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="id_number" value="{{ old('id_number', $inventory->id_number) }}"
-                        placeholder=" " required
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="id_number" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">ID
-                        Number</label>
-                </div>
-
-                <!-- Status -->
-                <fieldset class="relative z-0 w-full p-px mb-5">
-                    <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Pilih Status</legend>
-                    <div class="block pt-3 pb-2 space-x-4">
-                        <label>
-                            <input type="radio" name="status" value="Tersedia"
-                                {{ old('status', $inventory->status) == 'Tersedia' ? 'checked' : '' }}
-                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                required />
-                            Tersedia
-                        </label>
-                        <label>
-                            <input type="radio" name="status" value="Tidak Tersedia"
-                                {{ old('status', $inventory->status) == 'Tidak Tersedia' ? 'checked' : '' }}
-                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                                required />
-                            Tidak Tersedia
-                        </label>
-                    </div>
-                </fieldset>
-
                 <!-- Upload Gambar -->
                 <div class="relative z-0 w-full mb-5">
                     <input type="file" name="image" accept="image/*" class="block w-full mt-2 border-gray-200">
                     @error('image')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
-                    @if ($inventory->image_path)
+                    @if ($peminjam->image_path)
                         <!-- Pastikan untuk memeriksa 'image_path' -->
                         <p class="mt-2 text-gray-500">Gambar saat ini: <img
-                                src="{{ asset('storage/' . $inventory->image_path) }}" alt="Image" width="100">
+                                src="{{ asset('storage/' . $peminjam->image_path) }}" alt="Image" width="100">
                         </p>
                     @else
                         <p class="mt-2 text-red-500">Tidak ada gambar saat ini.</p>
@@ -117,31 +110,10 @@
 
                 </div>
 
-                <!-- Upload PDF -->
-                <div class="relative z-0 w-full mb-5">
-                    <input type="file" name="pdf" accept=".pdf" class="block w-full mt-2 border-gray-200">
-                    @error('pdf')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                    @if ($inventory->pdf_path)
-                        <!-- Pastikan untuk memeriksa 'pdf_path' -->
-                        <p class="mt-2 text-gray-500">File PDF saat ini:
-                            {{-- <a
-                                href="{{ asset('storage/' . $inventory->pdf_path) }}" target="_blank">Lihat PDF</a> --}}
-                        </p>
-                        <p class="mt-2 text-gray-500">Nama file: {{ basename($inventory->pdf_path) }}</p>
-                        <!-- Menampilkan nama file PDF -->
-                    @else
-                        <p class="mt-2 text-red-500">Tidak ada PDF saat ini.</p>
-                    @endif
-
-                </div>
-
-
                 <!-- Tanggal Peminjaman -->
                 <div class="relative z-0 w-full mb-5">
                     <input type="text" name="tanggal_peminjaman" id="date-input"
-                        value="{{ old('tanggal_peminjaman', $inventory->tanggal_peminjaman) }}" placeholder=" "
+                        value="{{ old('tanggal_peminjaman', $peminjam->tanggal_peminjaman) }}" placeholder=" "
                         onclick="this.setAttribute('type', 'date'); this.focus();"
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
                         onblur="this.setAttribute('type', 'text'); checkDate(this);" />
@@ -149,31 +121,36 @@
                         class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tanggal Peminjaman</label>
                 </div>
 
-                <!-- Kategori -->
+                <!-- Tanggal Pengembalian -->
                 <div class="relative z-0 w-full mb-5">
-                    <select name="category" required
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200">
-                        <option value="" disabled hidden>Pilih Kategori</option>
-                        <option value="Barang"
-                            {{ old('category', $inventory->category) == 'Barang' ? 'selected' : '' }}>Barang</option>
-                        <option value="Kendaraan"
-                            {{ old('category', $inventory->category) == 'Kendaraan' ? 'selected' : '' }}>Kendaraan
-                        </option>
-                        <option value="Ruangan"
-                            {{ old('category', $inventory->category) == 'Ruangan' ? 'selected' : '' }}>Ruangan</option>
-                    </select>
-                    <label for="category" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Pilih
-                        Kategori</label>
+                    <input type="text" name="tanggal_pengembalian" id="date-input"
+                        value="{{ old('tanggal_pengembalian', $peminjam->tanggal_pengembalian) }}" placeholder=" "
+                        onclick="this.setAttribute('type', 'date'); this.focus();"
+                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+                        onblur="this.setAttribute('type', 'text'); checkDate(this);" />
+                    <label for="tanggal_pengembalian"
+                        class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tanggal Pengembalian</label>
                 </div>
-
-                <!-- Jumlah -->
-                <div class="relative z-0 w-full mb-5">
-                    <input type="number" name="quantity" value="{{ old('quantity', $inventory->quantity) }}"
-                        placeholder=" " required
-                        class="pt-3 pb-2 pl-5 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="quantity"
-                        class="absolute duration-300 top-3 left-5 -z-1 origin-0 text-gray-500">Jumlah</label>
-                </div>
+                <!-- Status -->
+                <fieldset class="relative z-0 w-full p-px mb-5">
+                    <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Pilih Status</legend>
+                    <div class="block pt-3 pb-2 space-x-4">
+                        <label>
+                            <input type="radio" name="status" value="Dikembalikan"
+                                {{ old('status', $peminjam->status) == 'Dikembalikan' ? 'checked' : '' }}
+                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                required />
+                            Dikembalikan
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="Dipinjam"
+                                {{ old('status', $peminjam->status) == 'Dipinjam' ? 'checked' : '' }}
+                                class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                                required />
+                            Dipinjam
+                        </label>
+                    </div>
+                </fieldset>
 
                 <!-- Button submit -->
                 <button id="button" type="submit"

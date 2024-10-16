@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Peminjam; // Pastikan model Peminjam ditulis dengan huruf besar
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PeminjamController extends Controller
 {
@@ -23,27 +22,31 @@ class PeminjamController extends Controller
         // Apply sort based on the dropdown choices
         if ($sortType1 && $sortType1 !== 'Sort by') {
             switch ($sortType1) {
-                case 'Nama':
-                    $query->orderBy('nama_peminjam'); // Ganti dengan kolom yang sesuai
+                case 'Barang':
+                    $query->where('category', 'Barang');
                     break;
-                case 'Tanggal Peminjaman':
-                    $query->orderBy('tanggal_peminjaman'); // Ganti dengan kolom yang sesuai
+                case 'Kendaraan':
+                    $query->where('category', 'Kendaraan');
+                    break;
+                case 'Ruangan':
+                    $query->where('category', 'Ruangan');
                     break;
             }
         }
 
         if ($sortType2 && $sortType2 !== 'Status') {
             switch ($sortType2) {
-                case 'Dipinjam':
-                    $query->where('status', 'Dipinjam');
-                    break;
                 case 'Dikembalikan':
                     $query->where('status', 'Dikembalikan');
+                    break;
+                case 'Dipinjam':
+                    $query->where('status', 'Dipinjam');
                     break;
             }
         }
 
-        // Ambil data yang sudah di-sortir
+
+        // Ambil data peminjam
         $peminjams = $query->get();
 
         // Cek apakah permintaan AJAX
@@ -52,7 +55,7 @@ class PeminjamController extends Controller
         }
 
         return view('Admin.peminjam', [
-            'title' => 'Riwayat',
+            'title' => 'Peminjam',
             'peminjams' => $peminjams,
             'sortType1' => $sortType1, // Menyimpan nilai dropdown ke view
             'sortType2' => $sortType2, // Menyimpan nilai dropdown ke view
@@ -65,68 +68,39 @@ class PeminjamController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama_peminjam' => 'required',
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone_number' => 'required|digits:12', // Pastikan nomor telepon 12 digit
+        $request->validate([
+            'nama_peminjam' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|string|max:15',
+            'name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
             'tanggal_peminjaman' => 'required|date',
-            'tanggal_pengembalian' => 'required|date',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required|in:Dipinjam,Dikembalikan', // Ubah ini sesuai enum
+            'tanggal_pengembalian' => 'required|date|after:tanggal_peminjaman',
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'status' => 'required|string|in:Dikembalikan,Dipinjam',
         ]);
 
-        // Upload image
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-            $validatedData['image_path'] = $path;
+        try {
+            // Simpan gambar
+            $imagePath = $request->file('image')->store('images/peminjam', 'public');
+
+            // Buat entri peminjam baru
+            Peminjam::create([
+                'nama_peminjam' => $request->nama_peminjam,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
+                'name' => $request->name,
+                'category' => $request->category,
+                'tanggal_peminjaman' => $request->tanggal_peminjaman,
+                'tanggal_pengembalian' => $request->tanggal_pengembalian,
+                'image_path' => $imagePath,
+                'status' => $request->status,
+            ]);
+
+            return redirect()->route('Admin.peminjam')->with('success', 'Data peminjam berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            return redirect()->route('Admin.peminjam')->with('error', 'Gagal menambahkan peminjam: ' . $e->getMessage());
         }
-
-        // Menyimpan data peminjam
-        Peminjam::create($validatedData);
-        return redirect()->route('Admin.peminjam')->with('success', 'Data Peminjam berhasil ditambahkan');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $peminjam = Peminjam::findOrFail($id);
-        return view('Admin.komponen.riwayat.edit', compact('peminjam'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $peminjam = Peminjam::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'nama_peminjam' => 'required',
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone_number' => 'required|digits:12', // Pastikan nomor telepon 12 digit
-            'tanggal_peminjaman' => 'required|date',
-            'tanggal_pengembalian' => 'required|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required|in:Dipinjam,Dikembalikan', // Validasi status
-        ]);
-
-        // Update image if exists
-        if ($request->hasFile('image')) {
-            // Delete the old image
-            if ($peminjam->image_path) {
-                Storage::disk('public')->delete($peminjam->image_path);
-            }
-            // Store the new image
-            $path = $request->file('image')->store('images', 'public');
-            $validatedData['image_path'] = $path;
-        }
-
-        $peminjam->update($validatedData);
-        return redirect()->route('Admin.peminjam')->with('success', 'Data Peminjam berhasil diupdate');
     }
 
     /**
@@ -134,36 +108,68 @@ class PeminjamController extends Controller
      */
     public function destroy($id)
     {
-        $peminjam = Peminjam::findOrFail($id);
-        
-        // Delete the image
-        if ($peminjam->image_path) {
-            Storage::disk('public')->delete($peminjam->image_path);
+        $peminjam = Peminjam::find($id);
+
+        if ($peminjam) {
+            $peminjam->delete();
+            return redirect()->route('Admin.peminjam')->with('success', 'Data peminjam berhasil dihapus.');
         }
-        
-        $peminjam->delete();
-        return redirect()->route('Admin.peminjam')->with('success', 'Data Peminjam berhasil dihapus');
+
+        return redirect()->route('Admin.peminjam')->with('error', 'Data peminjam tidak ditemukan.');
     }
 
-    /**
-     * Delete selected items.
-     */
-    public function deleteSelected(Request $request)
+    public function edit($id)
     {
-        $selectedIds = $request->input('peminjam_ids'); // Ganti 'selected' dengan 'peminjam_ids'
+        // Mencari item berdasarkan ID
+        $peminjam = Peminjam::findOrFail($id);
+        $title = 'Edit Data Peminjam'; // Definisikan variabel $title
 
-        if ($selectedIds) {
-            foreach ($selectedIds as $id) {
-                $peminjam = Peminjam::find($id);
-                // Delete the image
-                if ($peminjam && $peminjam->image_path) {
-                    Storage::disk('public')->delete($peminjam->image_path);
-                }
-                $peminjam->delete();
+        // Mengembalikan view dengan data peminjam dan title
+        return view('Admin.komponen.riwayat.formEdit', compact('peminjam', 'title'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $peminjam = Peminjam::findOrFail($id); // Cari item berdasarkan ID
+
+        // Validasi data
+        $request->validate([
+            'nama_peminjam' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|string|max:15',
+            'name' => 'required|string|max:255',
+            'category' => 'required|string',
+            'tanggal_peminjaman' => 'required|date',
+            'tanggal_pengembalian' => 'required|date|after:tanggal_peminjaman',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'required|string|in:Dikembalikan,Dipinjam',
+        ]);
+
+        // Update data peminjam
+        $peminjam->nama_peminjam = $request->input('nama_peminjam');
+        $peminjam->email = $request->input('email');
+        $peminjam->phone_number = $request->input('phone_number');
+        $peminjam->name = $request->input('name');
+        $peminjam->category = $request->input('category');
+        $peminjam->tanggal_peminjaman = $request->input('tanggal_peminjaman');
+        $peminjam->tanggal_pengembalian = $request->input('tanggal_pengembalian');
+        $peminjam->status = $request->input('status');
+
+        // Handle upload gambar jika ada file baru
+        if ($request->hasFile('image')) {
+            // Hapus file gambar lama jika ada
+            if ($peminjam->image) {
+                \Storage::delete('public/' . $peminjam->image_path);
             }
-            return redirect()->route('Admin.peminjam')->with('success', 'Data Peminjam berhasil dihapus');
+            // Simpan gambar baru
+            $imagePath = $request->file('image')->store('images/peminjam', 'public');
+            $peminjam->image_path = $imagePath; // Pastikan kolom ini benar
         }
 
-        return redirect()->route('Admin.peminjam')->with('error', 'Tidak ada peminjam yang dipilih untuk dihapus.');
+        // Simpan perubahan
+        $peminjam->save();
+
+        // Redirect ke halaman yang diinginkan
+        return redirect()->route('Admin.peminjam')->with('success', 'Data peminjam berhasil diperbarui.');
     }
 }

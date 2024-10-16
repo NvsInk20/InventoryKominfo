@@ -41,8 +41,8 @@ Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inv
     Route::get('/riwayat/add-items', function () {
         return view('Admin.komponen.riwayat.formAdd', ['title' => 'Tambah Data']);
     });
-    Route::get('/edit/{id}', [PeminjamController::class, 'edit'])->name('peminjam.edit');
-    Route::put('/update/{id}', [PeminjamController::class, 'update'])->name('peminjam.update');
+    Route::get('/riwayat/{id}/edit', [PeminjamController::class, 'edit'])->name('peminjam.edit');
+    Route::put('/riwayat/{id}', [PeminjamController::class, 'update'])->name('peminjam.update');
     Route::delete('/destroy/{id}', [PeminjamController::class, 'destroy'])->name('peminjam.destroy');
 
 

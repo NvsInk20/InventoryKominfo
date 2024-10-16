@@ -14,6 +14,7 @@ class Peminjam extends Model
         'name',
         'email',
         'phone_number',
+        'category',
         'tanggal_peminjaman',
         'tanggal_pengembalian',
         'image_path',
