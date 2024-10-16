@@ -11,7 +11,6 @@
                      <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama Benda</th>
                      <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Bidang</th>
                      <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Penanggung Jawab</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
                  </tr>
              </thead>
              <tbody>
