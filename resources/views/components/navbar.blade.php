@@ -9,9 +9,9 @@
                     <div class="ml-72 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                         <x-nav-link href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
-                        <x-nav-link href="/inventory" :active="request()->is('inventory')">Status Barang</x-nav-link>
+                        <x-nav-link href="/inventory" :active="request()->is('inventory')">Inventory</x-nav-link>
                         <x-nav-link href="/riwayat" :active="request()->is('riwayat')">Riwayat</x-nav-link>
-                        <x-nav-link href="/penanggung jawab" :active="request()->is('penanggung jawab')">Penanggung Jawab</x-nav-link>
+                        <x-nav-link href="/penanggungjawab" :active="request()->is('penanggungjawab')">Penanggung Jawab</x-nav-link>
                     </div>
                 </div>
             </div>

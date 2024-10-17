@@ -1,166 +1,135 @@
- <!-- Table Container -->
- <div class="table-container">
-     <div
-         class="relative flex flex-col w-full h-full overflow-x-auto text-green-700 bg-white shadow-md rounded-lg bg-clip-border">
-         <table class="w-full text-left table-auto min-w-max">
-             <thead>
-                 <tr class="border-b border-slate-300 bg-slate-50">
-                     <th class="text-sm font-bold leading-none text-center text-slate-500">NO</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Gambar</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Number</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama Benda</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Bidang</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Penanggung Jawab</th>
-                     <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <!-- Row 1 -->
-                 <tr class="hover:bg-slate-50 border-2 border-black">
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5 text-center">1</td>
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5">
-                         <div class="gambar">
-                             <div
-                                 class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                                     fill="currentColor" stroke="currentColor" stroke-width="1">
-                                     <path fill-rule="evenodd"
-                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                         clip-rule="evenodd"></path>
-                                 </svg>
-                             </div>
-                             </label>
-                             <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
-                                 alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                         </div>
-                     </td>
-                     <td class="p-4 border-b border-slate-200 text-center py-5">
-                         <p class="block font-semibold text-sm text-center text-slate-800">F2024009</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">Kamera</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">SPBE</p>
-                     </td>
-                     <td class="p-4 border-b text-center border-slate-200 py-5">
-                         <h2>Bapak William</h2>
-                     </td>
-                     <td class="text-center ml-20 mt-3 border-slate-200 py-5 flex">
-                         <img src="img/trash.png" alt="" class="w-8 h-7 mr-2 cursor-pointer">
-                         <img src="img/edit.png" alt="" class="w-8 h-7 cursor-pointer">
-                     </td>
-                 </tr>
-                 <!-- Row 1 -->
-                 <tr class="hover:bg-slate-50 border-2 border-black">
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5 text-center">2</td>
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5">
-                         <div class="gambar">
-                             <div
-                                 class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                                     fill="currentColor" stroke="currentColor" stroke-width="1">
-                                     <path fill-rule="evenodd"
-                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                         clip-rule="evenodd"></path>
-                                 </svg>
-                             </div>
-                             </label>
-                             <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
-                                 alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                         </div>
-                     </td>
-                     <td class="p-4 border-b border-slate-200 text-center py-5">
-                         <p class="block font-semibold text-sm text-centertext-slate-800">F2024009</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">Kamera</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">SPBE</p>
-                     </td>
-                     <td class="p-4 border-b text-center border-slate-200 py-5">
-                         <h2>Bapak William</h2>
-                     </td>
-                     <td class="text-center ml-20 mt-3 border-slate-200 py-5 flex">
-                         <img src="img/trash.png" alt="" class="w-8 h-7 mr-2 cursor-pointer">
-                         <img src="img/edit.png" alt="" class="w-8 h-7 cursor-pointer">
-                     </td>
-                 </tr>
+<?php
+use Carbon\Carbon;
+?>
+<div class="table-container">
+    <div class="w-full flex justify-between items-center mb-3 pl-3">
+        <div>
+            <h3 class="text-lg font-semibold text-slate-800">Pinjam Dinas Kominfo</h3>
+            <p class="text-slate-500">Penanggung Jawab</p>
+        </div>
+        <div class="w-40 text-right ml-4">
+            <a href='/penanggungjawab/add-items'>
+                <button type="button"
+                    class="border border-blue-800 font-bold text-blue-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                    Add Items +
+                </button>
+            </a>
+        </div>
+    </div>
+    <div
+        class="relative flex flex-col w-full h-full overflow-x-auto text-green-700 bg-white shadow-md rounded-lg bg-clip-border">
+        @csrf
+        @method('DELETE')
+        <table class="w-full text-left table-auto min-w-max mb-16">
+            <thead>
+                <tr class="border-b border-slate-300 bg-slate-50">
+                    <th class="text-sm font-bold leading-none text-center text-slate-500">NO</th>
+                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Produk</th>
+                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Number</th>
+                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama Inventory</th>
+                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Bidang</th>
+                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Penanggung Jawab</th>
+                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($penanggung_jawabs as $penanggungjawab)
+                    <tr class="hover:bg-slate-50 border-gray-400">
+                        <td class="p-4 border-b border-slate-200 text-center">{{ $loop->iteration }}</td>
+                        <td class="p-4 border-b border-slate-200 text-center">
+                            <div class="gambar">
+                                <img src="{{ asset('storage/' . $penanggungjawab->image_path) }}"
+                                    alt="{{ $penanggungjawab->name }}" class="w-16 h-16 object-cover rounded" />
+                            </div>
+                        </td>
+                        <td class="p-4 border-b border-slate-200 text-center">
+                            <p class="font-semibold text-sm text-slate-800">{{ $penanggungjawab->ID_Produk }}</p>
+                        </td>
+                        <td class="p-4 border-b border-slate-200 text-center">
+                            <p class="font-semibold text-sm text-slate-800">{{ $penanggungjawab->name }}</p>
+                        </td>
+                        <td class="p-4 text-center border-b border-slate-200">
+                            <p class="text-sm text-slate-500">{{ $penanggungjawab->Bidang }}</p>
+                        </td>
+                        <td class="p-4 text-center border-b border-slate-200">
+                            <p class="text-sm text-slate-500">{{ $penanggungjawab->penanggung_jawab }}</p>
+                        </td>
+                        <td class="p-4 text-center border-b border-slate-200">
+                            <button type="button" class="text-slate-500 hover:text-slate-700"
+                                onclick="toggleDetails('accordion-color-body-{{ $penanggungjawab->id }}')">
+                                Details
+                            </button>
+                        </td>
+                    </tr>
+                    <tr id="accordion-color-body-{{ $penanggungjawab->id }}" class="hidden border-gray-400">
+                        <td colspan="6" class="p-4 border-b border-slate-200">
+                            <div class="flex">
+                                <div class="w-1/4">
+                                    <img src="{{ asset('storage/' . $penanggungjawab->image_path) }}"
+                                        alt="{{ $penanggungjawab->name }}"
+                                        class="w-28 h-28 object-cover rounded ml-10" />
+                                </div>
+                                <div class="w-3/4 ml-10 text-cyan-950">
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <h3 class="font-bold">Nama Inventory</h3>
+                                            <p>{{ $penanggungjawab->name }}</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">ID Produk</h3>
+                                            <p>{{ $penanggungjawab->ID_Produk }}</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">Kategori</h3>
+                                            <p>{{ $penanggungjawab->category }}</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">Bidang</h3>
+                                            <p>{{ $penanggungjawab->Bidang }}</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">Nomor Telp.</h3>
+                                            <p>{{ $penanggungjawab->nomor_telp }}</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold">Periode</h3>
+                                            <p>{{ $penanggungjawab->periode }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end mt-6">
+                                        <a href="{{ route('PJ.edit', $penanggungjawab->id) }}">
+                                            <button type="button"
+                                                class="border border-green-400 font-bold text-green-400 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-green-400">
+                                                Edit
+                                            </button>
+                                        </a>
+                                        <form action="{{ route('PJ.destroy', $penanggungjawab->id) }}" method="POST"
+                                            id="deleteForm-{{ $penanggungjawab->id }}"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus item ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="border border-orange-500 font-bold text-orange-800 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-orange-500">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
-                 <!-- Row 2 -->
-                 <tr class="hover:bg-slate-50 border-2 border-black">
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5 text-center">3</td>
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5">
-                         <div class="gambar">
-                             <div
-                                 class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                                     fill="currentColor" stroke="currentColor" stroke-width="1">
-                                     <path fill-rule="evenodd"
-                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                         clip-rule="evenodd"></path>
-                                 </svg>
-                             </div>
-                             </label>
-                             <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
-                                 alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                         </div>
-                     </td>
-                     <td class="p-4 border-b border-slate-200 text-center py-5">
-                         <p class="block font-semibold text-sm text-centertext-slate-800">M202498</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">Mobil Dinas</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">Bidang 2</p>
-                     </td>
-                     <td class="p-4 border-b text-center border-slate-200 py-5">
-                         <h2>Bapak William</h2>
-                     </td>
-                     <td class="text-center ml-20 mt-3 border-slate-200 py-5 flex">
-                         <img src="img/trash.png" alt="" class="w-8 h-7 mr-2 cursor-pointer">
-                         <img src="img/edit.png" alt="" class="w-8 h-7 cursor-pointer">
-                     </td>
-                 </tr>
-
-                 <!-- Baris ketiga -->
-                 <tr class="hover:bg-slate-50 border-2 border-black">
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5 text-center">4</td>
-                     <td class="p-4 flex-1 border-b border-slate-200 py-5">
-                         <div class="gambar">
-                             <div
-                                 class="pointer-events-none absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100">
-                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20"
-                                     fill="currentColor" stroke="currentColor" stroke-width="1">
-                                     <path fill-rule="evenodd"
-                                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                         clip-rule="evenodd"></path>
-                                 </svg>
-                             </div>
-                             </label>
-                             <img src="https://demos.creative-tim.com/corporate-ui-dashboard-pro/assets/img/kam-idris-_HqHX3LBN18-unsplash.jpg"
-                                 alt="Product 1" class="w-16 h-16 object-cover rounded" />
-                         </div>
-                     </td>
-                     <td class="p-4 border-b border-slate-200 text-center py-5">
-                         <p class="block font-semibold text-sm text-centertext-slate-800">R202409</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">Ruang Rapat</p>
-                     </td>
-                     <td class="p-4 text-center border-b border-slate-200 py-5">
-                         <p class="text-sm text-slate-500">Bidang 2</p>
-                     </td>
-                     <td class="p-4 border-b text-center border-slate-200 py-5">
-                         <h2>Bapak William</h2>
-                     </td>
-                     <td class="text-center ml-20 mt-3 border-slate-200 py-5 flex">
-                         <img src="img/trash.png" alt="" class="w-8 h-7 mr-2 cursor-pointer">
-                         <img src="img/edit.png" alt="" class="w-8 h-7 cursor-pointer">
-                     </td>
-                 </tr>
-             </tbody>
-         </table>
-     </div>
+<script>
+    function toggleDetails(id) {
+        const detailsRow = document.getElementById(id);
+        detailsRow.classList.toggle('hidden');
+        detailsRow.classList.toggle('transition-all');
+        detailsRow.classList.toggle('duration-300');
+        detailsRow.classList.toggle('ease-in-out');
+    }
+</script>

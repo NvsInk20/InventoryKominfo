@@ -30,7 +30,7 @@
                             <a @click.prevent="if (sortType1 !== 'Kendaraan') { sortType1='Kendaraan'; openSort1=false; $event.target.closest('form').submit(); }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
-                                <p class="font-semibold">Kendaraan Dinas</p>
+                                <p class="font-semibold">Kendaraan</p>
                             </a>
                             <a @click.prevent="if (sortType1 !== 'Ruangan') { sortType1='Ruangan'; openSort1=false; $event.target.closest('form').submit(); }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"

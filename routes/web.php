@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\PenanggungJawabController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,12 +46,20 @@ Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inv
     Route::put('/riwayat/{id}', [PeminjamController::class, 'update'])->name('peminjam.update');
     Route::delete('/destroy/{id}', [PeminjamController::class, 'destroy'])->name('peminjam.destroy');
 
-
+    // Rute PenanggungJawab (PJ)
+    Route::get('/penanggungjawab', [PenanggungJawabController::class, 'index'])->name('Admin.PJ');
+    Route::post('/penanggungjawab', [PenanggungJawabController::class, 'store'])->name('PJ.store');
+    Route::get('/penanggungjawab/add-items', function () {
+        return view('Admin.komponen.PJawab.formAdd', ['title' => 'Tambah Data']);
+    });
+    Route::get('/penanggungjawab/{id}/edit', [PenanggungJawabController::class, 'edit'])->name('PJ.edit');
+    Route::put('/penanggungjawab/{id}', [PenanggungJawabController::class, 'update'])->name('PJ.update');
+    Route::delete('/penanggungjawab/{id}/destroy', [PenanggungJawabController::class, 'destroy'])->name('PJ.destroy');
 
 // Cetak PDF
 Route::get('/print-pdf/{id}', [InventoryController::class, 'printPDF'])->name('print.pdf');
 
 // Penanggung Jawab
-Route::get('/penanggung-jawab', function () {
-    return view('Admin.PJ', ['title' => 'Penanggung Jawab']);
-});
+// Route::get('/penanggung jawab', function () {
+//     return view('Admin.PJ', ['title' => 'Penanggung Jawab']);
+// });

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat</title>
+    <title>Penanggung Jawab</title>
     <!-- Alpine.js -->
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Flowbite CSS -->
