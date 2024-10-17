@@ -123,7 +123,7 @@
                 <label for="pdf">Upload Surat:</label>
                 <input type="file" name="pdf" accept=".pdf" required>
 
-                <div class="relative z-0 w-full mb-5">
+                <div class="relative z-0 w-full my-5">
                     <select name="category" required
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none z-1 focus:outline-none focus:ring-0 focus:border-black border-gray-200">
                         <option value="" selected disabled hidden>Pilih Kategori</option>
@@ -140,8 +140,7 @@
                 <div class="relative z-0 w-full mb-5">
                     <input type="number" name="quantity" placeholder=" " required
                         class="pt-3 pb-2 pl-5 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="quantity"
-                        class="absolute duration-300 top-3 left-5 -z-1 origin-0 text-gray-500">Jumlah</label>
+                    <label for="quantity" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Jumlah</label>
                     {{-- <span class="text-sm text-red-600 hidden" id="error">Harap diisi terlebih dahulu</span> --}}
                 </div>
 
