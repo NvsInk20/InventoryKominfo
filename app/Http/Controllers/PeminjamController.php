@@ -23,13 +23,9 @@ class PeminjamController extends Controller
         if ($sortType1 && $sortType1 !== 'Sort by') {
             switch ($sortType1) {
                 case 'Barang':
-                    $query->where('category', 'Barang');
-                    break;
                 case 'Kendaraan':
-                    $query->where('category', 'Kendaraan');
-                    break;
                 case 'Ruangan':
-                    $query->where('category', 'Ruangan');
+                    $query->where('category', $sortType1);
                     break;
             }
         }
@@ -37,14 +33,11 @@ class PeminjamController extends Controller
         if ($sortType2 && $sortType2 !== 'Status') {
             switch ($sortType2) {
                 case 'Dikembalikan':
-                    $query->where('status', 'Dikembalikan');
-                    break;
                 case 'Dipinjam':
-                    $query->where('status', 'Dipinjam');
+                    $query->where('status', $sortType2);
                     break;
             }
         }
-
 
         // Ambil data peminjam
         $peminjams = $query->get();
@@ -55,11 +48,52 @@ class PeminjamController extends Controller
         }
 
         return view('Admin.peminjam', [
-            'title' => 'Peminjam',
+            'title' => 'Riwayat',
             'peminjams' => $peminjams,
-            'sortType1' => $sortType1, // Menyimpan nilai dropdown ke view
-            'sortType2' => $sortType2, // Menyimpan nilai dropdown ke view
+            'sortType1' => $sortType1,
+            'sortType2' => $sortType2,
             'activePage' => 'Admin.peminjam',
+        ]);
+    }
+
+    public function datasoft(Request $request)
+    {
+        // Ambil parameter sorting
+        $sortType1 = $request->input('sort_type1', 'Sort by'); // Nilai default
+        $sortType2 = $request->input('sort_type2', 'Status'); // Nilai default
+
+        // Query untuk hanya menampilkan data yang dihapus (soft deleted)
+        $query = Peminjam::onlyTrashed();
+
+        // Terapkan sort berdasarkan pilihan dropdown
+        if ($sortType1 && $sortType1 !== 'Sort by') {
+            switch ($sortType1) {
+                case 'Barang':
+                case 'Kendaraan':
+                case 'Ruangan':
+                    $query->where('category', $sortType1);
+                    break;
+            }
+        }
+
+        if ($sortType2 && $sortType2 !== 'Status') {
+            switch ($sortType2) {
+                case 'Dikembalikan':
+                case 'Dipinjam':
+                    $query->where('status', $sortType2);
+                    break;
+            }
+        }
+
+        // Ambil data peminjam yang sudah dihapus (soft deleted)
+        $peminjams = $query->get();
+
+        return view('Admin.komponen.riwayat.datasoft', [
+            'title' => 'Riwayat Hapus Data',
+            'peminjams' => $peminjams,
+            'sortType1' => $sortType1,
+            'sortType2' => $sortType2,
+            'activePage' => 'Admin.peminjam.soft',
         ]);
     }
 
@@ -158,7 +192,7 @@ class PeminjamController extends Controller
         // Handle upload gambar jika ada file baru
         if ($request->hasFile('image')) {
             // Hapus file gambar lama jika ada
-            if ($peminjam->image) {
+            if ($peminjam->image_path) {
                 \Storage::delete('public/' . $peminjam->image_path);
             }
             // Simpan gambar baru
@@ -171,5 +205,27 @@ class PeminjamController extends Controller
 
         // Redirect ke halaman yang diinginkan
         return redirect()->route('Admin.peminjam')->with('success', 'Data peminjam berhasil diperbarui.');
+    }
+
+    public function restore($id)
+    {
+        $peminjam = Peminjam::withTrashed()->find($id);
+        if ($peminjam) {
+            $peminjam->restore();
+            return redirect()->back()->with('success', 'Data peminjam berhasil dipulihkan.');
+        }
+
+        return redirect()->back()->with('error', 'Data peminjam tidak ditemukan.');
+    }
+
+    public function forceDelete($id)
+    {
+        $peminjam = Peminjam::onlyTrashed()->find($id);
+        if ($peminjam) {
+            $peminjam->forceDelete();
+            return redirect()->back()->with('success', 'Data peminjam berhasil dipulihkan.');
+        }
+
+        return redirect()->back()->with('error', 'Data peminjam tidak ditemukan.');
     }
 }

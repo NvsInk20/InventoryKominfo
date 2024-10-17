@@ -24,6 +24,7 @@ class CreateInventoriesTable extends Migration
             $table->enum('keadaan_barang', ['Baik', 'Kurang Baik', 'Rusak Berat']);
             $table->string('responsible');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

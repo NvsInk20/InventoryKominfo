@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Peminjam extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'nama_peminjam',
@@ -20,4 +23,5 @@ class Peminjam extends Model
         'image_path',
         'status'
     ];
+    protected $dates = ['deleted_at'];
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('image_path')->nullable(); // Menyimpan path gambar
             $table->enum('status', ['Dipinjam', 'Dikembalikan'])->default('Dipinjam');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -4,14 +4,20 @@ use Carbon\Carbon;
 <div class="table-container">
     <div class="w-full flex justify-between items-center mb-3 pl-3">
         <div>
-            <h3 class="text-lg font-semibold text-slate-800">Pinjam Dinas Kominfo</h3>
-            <p class="text-slate-500">Penanggung Jawab</p>
+            <h3 class="text-lg font-semibold text-slate-800">Dinas Kominfo Kabupaten Boyolali</h3>
+            <p class="text-slate-500">Riwayat Peminjaman</p>
         </div>
-        <div class="w-40 text-right ml-4">
+        <div class="text-right ml-40">
             <a href='/riwayat/add-items'>
                 <button type="button"
                     class="border border-blue-800 font-bold text-blue-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-blue-700 focus:outline-none focus:shadow-outline">
                     Add Items +
+                </button>
+            </a>
+            <a href='/riwayat/datasoft'>
+                <button type="button"
+                    class="border border-orange-600 font-bold text-orange-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-orange-500 focus:outline-none focus:shadow-outline">
+                    Deleted
                 </button>
             </a>
         </div>

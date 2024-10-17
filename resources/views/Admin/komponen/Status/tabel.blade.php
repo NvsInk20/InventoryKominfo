@@ -5,8 +5,8 @@ use Carbon\Carbon;
 <div class="table-container">
     <div class="w-full flex justify-between items-center mb-3 pl-3">
         <div>
-            <h3 class="text-lg font-semibold text-slate-800">Inventory Dinas Kominfo</h3>
-            <p class="text-slate-500">Penanggung Jawab</p>
+            <h3 class="text-lg font-semibold text-slate-800">Dinas Kominfo Kabupaten Boyolali</h3>
+            <p class="text-slate-500">Inventory Dinas</p>
         </div>
         <div class="text-right ml-40" id="kiri">
             <a href='/inventory/add-items'>
@@ -15,14 +15,19 @@ use Carbon\Carbon;
                     Add Items +
                 </button>
             </a>
+            <button type="button"
+                class="border border-red-400 font-bold text-red-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-red-600 focus:outline-none focus:shadow-outline"
+                id="deleteButton" disabled onclick="submitDeleteForm()">
+                Delete Item
+            </button>
         </div>
-        <div class="w-40 text-right ml-4" id="red">
+        {{-- <div class="w-40 text-right ml-4" id="red">
             <button type="button"
                 class="border border-red-400 font-bold text-red-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white focus:outline-none focus:shadow-outline"
                 id="deleteButton" disabled onclick="submitDeleteForm()">
                 Delete Item
             </button>
-        </div>
+        </div> --}}
     </div>
     <div
         class="relative flex flex-col w-full h-full overflow-x-auto text-green-700 bg-white shadow-md rounded-lg bg-clip-border">

@@ -38,6 +38,7 @@ Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inv
 
 // Rute Peminjam (Riwayat)
     Route::get('/riwayat', [PeminjamController::class, 'index'])->name('Admin.peminjam');
+    Route::get('/riwayat/datasoft', [PeminjamController::class, 'datasoft'])->name('peminjam.datasoft');
     Route::post('/riwayat', [PeminjamController::class, 'store'])->name('peminjam.store');
     Route::get('/riwayat/add-items', function () {
         return view('Admin.komponen.riwayat.formAdd', ['title' => 'Tambah Data']);
@@ -45,7 +46,9 @@ Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inv
     Route::get('/riwayat/{id}/edit', [PeminjamController::class, 'edit'])->name('peminjam.edit');
     Route::put('/riwayat/{id}', [PeminjamController::class, 'update'])->name('peminjam.update');
     Route::delete('/destroy/{id}', [PeminjamController::class, 'destroy'])->name('peminjam.destroy');
-
+    Route::post('/riwayat/restore/{id}', [PeminjamController::class, 'restore'])->name('peminjam.restore');
+    Route::delete('/riwayat/forceDelete/{id}', [PeminjamController::class, 'forceDelete'])->name('peminjam.forceDelete');
+    
     // Rute PenanggungJawab (PJ)
     Route::get('/penanggungjawab', [PenanggungJawabController::class, 'index'])->name('Admin.PJ');
     Route::post('/penanggungjawab', [PenanggungJawabController::class, 'store'])->name('PJ.store');

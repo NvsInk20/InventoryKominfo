@@ -4,7 +4,7 @@ use Carbon\Carbon;
 <div class="table-container">
     <div class="w-full flex justify-between items-center mb-3 pl-3">
         <div>
-            <h3 class="text-lg font-semibold text-slate-800">Pinjam Dinas Kominfo</h3>
+            <h3 class="text-lg font-semibold text-slate-800">Dinas Kominfo Kabupaten Boyolali</h3>
             <p class="text-slate-500">Penanggung Jawab</p>
         </div>
         <div class="w-40 text-right ml-4">
