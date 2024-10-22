@@ -15,15 +15,21 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::middleware('auth')->group(function () {
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Tambahkan route lain yang perlu login di sini
+});
+// Route untuk logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/register', [register::class, 'index']);
 Route::post('/register', [register::class, 'store']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
-Route::get('/dashboard', function () {
-    return view('Admin.dashboard', ['title' => 'Dashboard']);
-});
+// Route::get('/dashboard', function () {
+//     return view('Admin.dashboard', ['title' => 'Dashboard']);
+// });
 
 // Status Barang (Inventory)
 Route::get('/inventory', [InventoryController::class, 'index'])->name('Admin.inventory');

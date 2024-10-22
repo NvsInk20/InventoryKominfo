@@ -14,14 +14,14 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('id_number')->unique();
+            $table->string('id_inventory')->unique();
             $table->integer('quantity');
             $table->enum('status', ['Tersedia', 'Tidak Tersedia']);
             $table->string('category');
             $table->string('image_path');
             $table->string('pdf_path');
             $table->integer('year');
-            $table->enum('keadaan_barang', ['Baik', 'Kurang Baik', 'Rusak Berat']);
+            $table->enum('keadaan_inventory', ['Baik', 'Kurang Baik', 'Rusak Berat']);
             $table->string('responsible');
             $table->timestamps();
             $table->softDeletes();

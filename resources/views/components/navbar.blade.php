@@ -12,6 +12,13 @@
                         <x-nav-link href="/inventory" :active="request()->is('inventory')">Inventory</x-nav-link>
                         <x-nav-link href="/riwayat" :active="request()->is('riwayat')">Riwayat</x-nav-link>
                         <x-nav-link href="/penanggungjawab" :active="request()->is('penanggungjawab')">Penanggung Jawab</x-nav-link>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="text-gray-100 top-7 ml-6 hover:text-black absolute rounded-md text-sm font-medium">
+                                Logout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

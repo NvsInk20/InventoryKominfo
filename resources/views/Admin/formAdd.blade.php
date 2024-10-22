@@ -49,6 +49,13 @@
                 </div>
 
                 <div class="relative z-0 w-full mb-5">
+                    <input type="text" name="responsible" placeholder=" " required
+                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
+                    <label for="responsible" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Penanggung
+                        Jawab</label>
+                    {{-- <span class="text-sm text-red-600 hidden" id="error">Harap diisi terlebih dahulu</span> --}}
+                </div>
+                <div class="relative z-0 w-full mb-5">
                     <input type="number" name="year" placeholder=" " required
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
                     <label for="year" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Tahun
@@ -57,17 +64,9 @@
                 </div>
 
                 <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="responsible" placeholder=" " required
+                    <input type="text" name="id_inventory" placeholder=" " required
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="responsible" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">Penanggung
-                        Jawab</label>
-                    {{-- <span class="text-sm text-red-600 hidden" id="error">Harap diisi terlebih dahulu</span> --}}
-                </div>
-
-                <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="id_number" placeholder=" " required
-                        class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="id_number" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">ID
+                    <label for="id_inventory" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">ID
                         Number</label>
                     {{-- <span class="text-sm text-red-600 hidden" id="error">ID Number harus diisi</span> --}}
                 </div>
@@ -95,19 +94,19 @@
                     <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Keadaan Barang</legend>
                     <div class="block pt-3 pb-2 space-x-4">
                         <label>
-                            <input type="radio" name="keadaan_barang" value="Baik"
+                            <input type="radio" name="keadaan_inventory" value="Baik"
                                 class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 required />
                             Baik
                         </label>
                         <label>
-                            <input type="radio" name="keadaan_barang" value="Kurang Baik"
+                            <input type="radio" name="keadaan_inventory" value="Kurang Baik"
                                 class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 required />
                             Kurang Baik
                         </label>
                         <label>
-                            <input type="radio" name="keadaan_barang" value="Rusak Berat"
+                            <input type="radio" name="keadaan_inventory" value="Rusak Berat"
                                 class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 required />
                             Rusak Berat

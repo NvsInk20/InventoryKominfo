@@ -39,7 +39,7 @@ use Carbon\Carbon;
                     <tr class="border-b border-slate-300 bg-slate-50">
                         <th class="text-sm font-bold leading-none text-center text-slate-500">NO</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Produk</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Number</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Inventory</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Jumlah</th>
                         <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Status</th>
@@ -65,7 +65,7 @@ use Carbon\Carbon;
                             </td>
 
                             <td class="p-4 border-b border-slate-200 text-center py-5">
-                                <p class="block font-semibold text-sm text-slate-800">{{ $inventory->id_number }}</p>
+                                <p class="block font-semibold text-sm text-slate-800">{{ $inventory->id_inventory }}</p>
                             </td>
                             <td class="p-4 text-center border-b border-slate-200 py-5">
                                 <p class="text-sm text-slate-500">{{ $inventory->name }}</p>
@@ -112,7 +112,7 @@ use Carbon\Carbon;
                                             </div>
                                             <div>
                                                 <h3 class="font-bold">ID Inventory</h3>
-                                                <p>{{ $inventory->id_number }}</p>
+                                                <p>{{ $inventory->id_inventory }}</p>
                                             </div>
                                             <div>
                                                 <h3 class="font-bold">Tahun Penggunaan</h3>
@@ -131,8 +131,8 @@ use Carbon\Carbon;
                                                 <p>{{ $inventory->category }}</p>
                                             </div>
                                             <div>
-                                                <h3 class="font-bold">Keadaan Barang</h3>
-                                                <p>{{ $inventory->keadaan_barang }}</p>
+                                                <h3 class="font-bold">Keadaan Inventory</h3>
+                                                <p>{{ $inventory->keadaan_inventory }}</p>
                                             </div>
                                         </div>
                                         <!-- Bagian tombol -->

@@ -72,11 +72,11 @@
 
                 <!-- ID Number -->
                 <div class="relative z-0 w-full mb-5">
-                    <input type="text" name="id_number" value="{{ old('id_number', $inventory->id_number) }}"
-                        placeholder=" " required
+                    <input type="text" name="id_inventory"
+                        value="{{ old('id_inventory', $inventory->id_inventory) }}" placeholder=" " required
                         class="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200" />
-                    <label for="id_number" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">ID
-                        Number</label>
+                    <label for="id_inventory" class="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">ID
+                        Inventory</label>
                 </div>
 
                 <!-- Status -->
@@ -102,25 +102,25 @@
 
                 <!-- Keadaan Barang -->
                 <fieldset class="relative z-0 w-full p-px mb-5">
-                    <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Keadaan Barang</legend>
+                    <legend class="absolute text-gray-500 transform scale-75 -top-3 origin-0">Keadaan Inventory</legend>
                     <div class="block pt-3 pb-2 space-x-4">
                         <label>
-                            <input type="radio" name="keadaan_barang" value="Baik"
-                                {{ old('keadaan_barang', $inventory->keadaan_barang) == 'Baik' ? 'checked' : '' }}
+                            <input type="radio" name="keadaan_inventory" value="Baik"
+                                {{ old('keadaan_inventory', $inventory->keadaan_inventory) == 'Baik' ? 'checked' : '' }}
                                 class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 required />
                             Baik
                         </label>
                         <label>
-                            <input type="radio" name="keadaan_barang" value="Kurang Baik"
-                                {{ old('keadaan_barang', $inventory->keadaan_barang) == 'Kurang Baik' ? 'checked' : '' }}
+                            <input type="radio" name="keadaan_inventory" value="Kurang Baik"
+                                {{ old('keadaan_inventory', $inventory->keadaan_inventory) == 'Kurang Baik' ? 'checked' : '' }}
                                 class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 required />
                             Kurang Baik
                         </label>
                         <label>
-                            <input type="radio" name="keadaan_barang" value="Rusak Berat"
-                                {{ old('keadaan_barang', $inventory->keadaan_barang) == 'Rusak Berat' ? 'checked' : '' }}
+                            <input type="radio" name="keadaan_inventory" value="Rusak Berat"
+                                {{ old('keadaan_inventory', $inventory->keadaan_inventory) == 'Rusak Berat' ? 'checked' : '' }}
                                 class="mr-2 text-blue-500 border-2 border-gray-300 focus:border-blue-500 focus:ring-blue-500"
                                 required />
                             Rusak Berat

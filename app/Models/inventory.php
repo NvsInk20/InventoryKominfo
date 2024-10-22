@@ -13,14 +13,14 @@ class Inventory extends Model
 
     protected $fillable = [
         'name',
-        'id_number',
+        'id_inventory',
         'quantity',
         'status',
         'category',
         'image_path',
         'pdf_path',
         'year',
-        'keadaan_barang',
+        'keadaan_inventory',
         'responsible',
     ];
     // // Definisi relasi ke model peminjam

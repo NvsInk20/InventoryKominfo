@@ -71,14 +71,14 @@ class InventoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'id_number' => 'required|string|unique:inventories',
+            'id_inventory' => 'required|string|unique:inventories',
             'quantity' => 'required|integer',
             'status' => 'required|in:Tersedia,Tidak Tersedia',
             'category' => 'required|string|max:255',
             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'pdf' => 'required|file|mimes:pdf|max:2048',
             'year' => 'required|integer',
-            'keadaan_barang' => 'required|string|in:Baik,Kurang Baik,Rusak Berat',
+            'keadaan_inventory' => 'required|string|in:Baik,Kurang Baik,Rusak Berat',
             'responsible' => 'required|string|max:255',
         ]);
 
@@ -92,14 +92,14 @@ class InventoryController extends Controller
             // Buat entri inventory baru
             Inventory::create([
                 'name' => $request->name,
-                'id_number' => $request->id_number,
+                'id_inventory' => $request->id_inventory,
                 'quantity' => $request->quantity,
                 'status' => $request->status,
                 'category' => $request->category,
                 'image_path' => $imagePath, // Pastikan menggunakan 'image_path' jika sesuai dengan migrasi
                 'pdf_path' => $pdfPath, // Pastikan field ini ada di migrasi
                 'year' => $request->year,
-                'keadaan_barang' => $request->keadaan_barang,
+                'keadaan_inventory' => $request->keadaan_inventory,
                 'responsible' => $request->responsible,
             ]);
 
@@ -175,24 +175,24 @@ public function update(Request $request, $id)
         'name' => 'required|string|max:255',
         'year' => 'required|integer',
         'responsible' => 'required|string|max:255',
-        'id_number' => 'required|string|max:100',
+        'id_inventory' => 'required|string|max:100',
         'status' => 'required|string',
         'category' => 'required|string',
         'quantity' => 'required|integer|min:1',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'pdf' => 'nullable|mimes:pdf|max:10000',
-        'keadaan_barang' => 'required|string',
+        'keadaan_inventory' => 'required|string',
     ]);
 
     // Update data inventory
     $inventory->name = $request->input('name');
     $inventory->year = $request->input('year');
     $inventory->responsible = $request->input('responsible');
-    $inventory->id_number = $request->input('id_number');
+    $inventory->id_inventory = $request->input('id_inventory');
     $inventory->status = $request->input('status');
     $inventory->category = $request->input('category');
     $inventory->quantity = $request->input('quantity');
-    $inventory->keadaan_barang = $request->input('keadaan_barang');
+    $inventory->keadaan_inventory = $request->input('keadaan_inventory');
 
     // Handle upload gambar jika ada file baru
     if ($request->hasFile('image')) {

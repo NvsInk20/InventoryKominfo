@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -32,8 +31,19 @@ class LoginController extends Controller
         }
 
         // Jika gagal, kembali ke halaman login dengan pesan error
-            return back()->withErrors([
-                'login' => 'Username atau Password tidak terdaftar.'
-                ])->onlyInput('username'); // Mengembalikan input username saja
+        return back()->withErrors([
+            'login' => 'Username atau Password tidak terdaftar.'
+        ])->onlyInput('username'); // Mengembalikan input username saja
+    }
+
+    public function logout(Request $request)
+    {
+        // Proses logout
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        // Redirect ke halaman login setelah logout
+        return redirect('/login');
     }
 }

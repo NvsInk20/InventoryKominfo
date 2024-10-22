@@ -10,9 +10,13 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth'); // Middleware auth untuk memastikan hanya pengguna yang login yang bisa mengakses
+    }
     public function index()
     {
-        return view('Admin.dashboard.index', [
+        return view('Admin.dashboard', [
             'title' => 'Dashboard',
         ]);
     }
