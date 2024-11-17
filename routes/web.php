@@ -15,6 +15,13 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/inventory', [InventoryController::class, 'index']);
+    Route::get('/riwayat', [PeminjamController::class, 'index']);
+    Route::get('/penanggungjawab', [PenanggungJawabController::class, 'index']);
+});
 
 Route::get('/register', [register::class, 'index']);
 Route::post('/register', [register::class, 'store']);

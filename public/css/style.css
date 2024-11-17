@@ -28,6 +28,19 @@ footer span {
     margin-left: 10%;
     gap: 80px;
 }
+.logout{
+    margin-left: 87%;
+    margin-top: 5px;
+    position: absolute;
+    border-radius: 15px;
+    display: flex;
+    border: 1px solid black;
+}
+.logout:hover{
+    background-color: #3489d2;
+    border: 1px solid white;
+    color: #fff;
+}
 
 .dropdown {
     flex: 1;

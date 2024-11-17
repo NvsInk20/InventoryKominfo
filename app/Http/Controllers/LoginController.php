@@ -18,22 +18,26 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        // Validasi input
         $validatedData = $request->validate([
             'username' => 'required',
             'password' => 'required',
         ]);
 
-        // Cek kredensial
-        if (Auth::attempt($validatedData)) {
-            // Jika berhasil, redirect ke halaman yang diinginkan
-            $request->session()->regenerate(); // Mencegah serangan session fixation
-            return redirect()->intended('/dashboard'); // Ganti dengan route yang sesuai
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard');
         }
 
-        // Jika gagal, kembali ke halaman login dengan pesan error
-            return back()->withErrors([
-                'login' => 'Username atau Password tidak terdaftar.'
-                ])->onlyInput('username'); // Mengembalikan input username saja
+        return back()->withErrors([
+            'login' => 'Username atau Password tidak terdaftar.'
+        ])->onlyInput('username');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/login');
     }
 }

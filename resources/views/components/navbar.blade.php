@@ -12,6 +12,7 @@
                         <x-nav-link href="/inventory" :active="request()->is('inventory')">Inventory</x-nav-link>
                         <x-nav-link href="/riwayat" :active="request()->is('riwayat')">Riwayat</x-nav-link>
                         <x-nav-link href="/penanggungjawab" :active="request()->is('penanggungjawab')">Penanggung Jawab</x-nav-link>
+
                     </div>
                 </div>
             </div>
@@ -51,5 +52,14 @@
             <x-nav-link href="/riwayat" :active="request()->is('riwayat')">Riwayat</x-nav-link>
             <x-nav-link href="/penanggung jawab" :active="request()->is('penanggung jawab')">Penanggung Jawab</x-nav-link>
         </div>
+    </div>
+    <div class="logout">
+        <form action="/logout" method="POST">
+            @csrf
+            <button type="submit" class="block px-5 py-3 text-md rounded flex items-center w-full text-left">
+                <img src="/images/logout.png" alt="logout" class="mr-3 w-6">
+                Keluar
+            </button>
+        </form>
     </div>
 </nav>
