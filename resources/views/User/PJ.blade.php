@@ -4,22 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Riwayat</title>
+    <title>Penanggung Jawab</title>
     <!-- Alpine.js -->
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Flowbite CSS -->
+    <link rel="icon" href="img/kominfo.jpg">
     @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 </head>
 
 <body>
-    <x-layout>
+    <x-layoutUser>
         <x-slot:title>{{ $title }}</x-slot:title>
-        @include('komponen.PJawab.dropdown')
-        @include('komponen.PJawab.tabel')
+        @include('User.komponen.PJawab.dropdown')
+        @include('User.komponen.PJawab.tabel')
 
-    </x-layout>
+    </x-layoutUser>
     <!-- JavaScript untuk Toggle Details -->
     <script>
         function toggleDetails(rowId) {

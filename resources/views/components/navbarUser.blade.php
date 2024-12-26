@@ -5,13 +5,12 @@
                 <div class="flex-shrink-0">
                     <img class="h-30 w-45 mt-5" src="/img/kominfo.jpg" alt="Your Company">
                 </div>
-                <div class="hidden md:block ml-72">
+                <div class="hidden md:block ml-96">
                     <div class="ml-72 flex items-baseline space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <x-nav-link href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
-                        <x-nav-link href="/inventory" :active="request()->is('inventory')">Inventory</x-nav-link>
-                        <x-nav-link href="/riwayat" :active="request()->is('riwayat')">Riwayat</x-nav-link>
-                        <x-nav-link href="/penanggungjawab" :active="request()->is('penanggungjawab')">Penanggung Jawab</x-nav-link>
+                        <x-nav-linkUser href="/Dashboard-Inventaris" :active="request()->is('Dashboard-Inventaris')">Dashboard</x-nav-linkUser>
+                        <x-nav-linkUser href="/Inventory-Barang" :active="request()->is('Inventory-Barang')">Inventory</x-nav-linkUser>
+                        <x-nav-linkUser href="/penanggung-jawab" :active="request()->is('penanggung-jawab')">Penanggung Jawab</x-nav-linkUser>
                     </div>
                 </div>
             </div>
@@ -46,11 +45,10 @@
     <div x-show="isOpen" class="md:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3 mt-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <x-nav-link href="/dashboard" :active="request()->is('dashboard')">Dashboard</x-nav-link>
-            <x-nav-link href="/status barang" :active="request()->is('status barang')">Status Barang</x-nav-link>
-            <x-nav-link href="/riwayat" :active="request()->is('riwayat')">Riwayat</x-nav-link>
-            <x-nav-link href="/penanggung jawab" :active="request()->is('penanggung jawab')">Penanggung Jawab</x-nav-link>
+            <x-nav-linkUser href="/Dashboard-Inventaris" :active="request()->is('dashboard')">Dashboard</x-nav-linkUser>
+            <x-nav-linkUser href="/Inventory-Barang" :active="request()->is('status barang')">Status Barang</x-nav-linkUser>
+            <x-nav-linkUser href="/penanggung-jawab" :active="request()->is('penanggung jawab')">Penanggung Jawab</x-nav-linkUser>
         </div>
     </div>
-    
+
 </nav>

@@ -1,5 +1,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="//unpkg.com/alpinejs" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 <!-- Dropdown Container -->
 <form method="GET" action="{{ route('Admin.inventory') }}">
@@ -22,17 +22,17 @@
                 <div x-show="openSort1" x-transition class="dropdown-content">
                     <div class="px-2 pt-2 pb-2 text-black rounded-md shadow-lg bg-white">
                         <div class="flex flex-col">
-                            <a @click.prevent="if (sortType1 !== 'Barang') { sortType1='Barang'; openSort1=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="sortType1='Barang'; openSort1=false;$nextTick(() => $el.closest('form').submit());"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Barang</p>
                             </a>
-                            <a @click.prevent="if (sortType1 !== 'Kendaraan') { sortType1='Kendaraan'; openSort1=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="sortType1='Kendaraan'; openSort1=false;$nextTick(() => $el.closest('form').submit());"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Kendaraan</p>
                             </a>
-                            <a @click.prevent="if (sortType1 !== 'Ruangan') { sortType1='Ruangan'; openSort1=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="sortType1='Ruangan'; openSort1=false;$nextTick(() => $el.closest('form').submit());"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Ruangan</p>
@@ -61,12 +61,12 @@
                 <div x-show="openSort2" x-transition class="dropdown-content">
                     <div class="px-2 pt-2 pb-2 text-black rounded-md shadow-lg bg-white">
                         <div class="flex flex-col">
-                            <a @click.prevent="if (sortType2 !== 'Tersedia') { sortType2='Tersedia'; openSort2=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="sortType2='Tersedia'; openSort2=false;$nextTick(() => $el.closest('form').submit());"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Tersedia</p>
                             </a>
-                            <a @click.prevent="if (sortType2 !== 'Tidak Tersedia') { sortType2='Tidak Tersedia'; openSort2=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="sortType2='Tidak Tersedia'; openSort2=false;$nextTick(() => $el.closest('form').submit());"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Tidak Tersedia</p>
@@ -78,6 +78,7 @@
         </div>
     </div>
 </form>
+
 <script>
     function updateActivePage(page) {
         // Ubah warna navbar sesuai dengan halaman aktif

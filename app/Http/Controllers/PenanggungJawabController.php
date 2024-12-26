@@ -49,7 +49,7 @@ class PenanggungJawabController extends Controller
         }
 
         // Ambil data penanggung jawab
-        $penanggung_jawabs = $query->get();
+        $penanggung_jawabs = $query->paginate(10);
 
         // Cek apakah permintaan AJAX
         if ($request->ajax()) {
@@ -62,6 +62,60 @@ class PenanggungJawabController extends Controller
             'sortType1' => $sortType1,
             'sortType2' => $sortType2,
             'activePage' => 'Admin.PJ',
+        ]);
+    }
+    public function indexUser(Request $request)
+    {
+        // Ambil parameter sorting
+        $sortType1 = $request->input('sort_type1', 'Sort by');
+        $sortType2 = $request->input('sort_type2', 'Bidang');
+
+        // Query dasar
+        $query = PenanggungJawab::query();
+
+        // Apply sort based on the dropdown choices
+        if ($sortType1 && $sortType1 !== 'Sort by') {
+            switch ($sortType1) {
+                case 'Barang':
+                    $query->where('category', 'Barang');
+                    break;
+                case 'Kendaraan':
+                    $query->where('category', 'Kendaraan');
+                    break;
+                case 'Ruangan':
+                    $query->where('category', 'Ruangan');
+                    break;
+            }
+        }
+
+        if ($sortType2 && $sortType2 !== 'Bidang') {
+            switch ($sortType2) {
+                case 'Bidang 1':
+                    $query->where('Bidang', 'Bidang 1');
+                    break;
+                case 'Bidang 2':
+                    $query->where('Bidang', 'Bidang 2');
+                    break;
+                case 'Bidang 3':
+                    $query->where('Bidang', 'Bidang 3');
+                    break;
+            }
+        }
+
+        // Ambil data penanggung jawab
+        $penanggung_jawabs = $query->paginate(10);
+
+        // Cek apakah permintaan AJAX
+        if ($request->ajax()) {
+            return view('partials.PJTable', ['penanggung_jawabs' => $penanggung_jawabs]);
+        }
+
+        return view('User.PJ', [
+            'title' => 'Penanggung Jawab',
+            'penanggung_jawabs' => $penanggung_jawabs,
+            'sortType1' => $sortType1,
+            'sortType2' => $sortType2,
+            'activePage' => 'User.PJ',
         ]);
     }
 

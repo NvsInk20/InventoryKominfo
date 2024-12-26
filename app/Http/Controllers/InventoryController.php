@@ -11,6 +11,59 @@ class InventoryController extends Controller
      * Display a listing of the resource.
      */
    public function index(Request $request)
+{
+    // Ambil parameter sorting
+    $sortType1 = $request->input('sort_type1', 'Sort by'); // Nilai default
+    $sortType2 = $request->input('sort_type2', 'Status'); // Nilai default
+
+    // Query dasar
+    $query = Inventory::query();
+
+    // Apply sort berdasarkan pilihan dropdown pertama (sortType1)
+    if ($sortType1 && $sortType1 !== 'Sort by') {
+        switch ($sortType1) {
+            case 'Barang':
+                $query->where('category', 'Barang');
+                break;
+            case 'Kendaraan':
+                $query->where('category', 'Kendaraan');
+                break;
+            case 'Ruangan':
+                $query->where('category', 'Ruangan');
+                break;
+        }
+    }
+
+    // Apply sort berdasarkan pilihan dropdown kedua (sortType2)
+    if ($sortType2 && $sortType2 !== 'Status') {
+        switch ($sortType2) {
+            case 'Tersedia':
+                $query->where('status', 'Tersedia');
+                break;
+            case 'Tidak Tersedia':
+                $query->where('status', 'Tidak Tersedia');
+                break;
+        }
+    }
+
+    // Ambil data dan paginate
+    $inventories = $query->paginate(10);
+
+    // Kembalikan ke view dengan data yang sudah difilter
+    return view('Admin.inventory', [
+        'title' => 'Inventory',
+        'inventories' => $inventories,
+        'sortType1' => $sortType1,
+        'sortType2' => $sortType2,
+        'activePage' => 'Admin.inventory',
+    ]);
+}
+
+
+
+
+
+   public function indexUser(Request $request)
     {
         // Ambil parameter sorting
         $sortType1 = $request->input('sort_type1', 'Sort by'); // Nilai default
@@ -46,19 +99,19 @@ class InventoryController extends Controller
         }
 
         // Ambil data yang sudah di-sortir
-        $inventories = $query->get();
+        $inventories = $query->paginate(10);
 
         // Cek apakah permintaan AJAX
         if ($request->ajax()) {
             return view('partials.inventoryTable', ['inventories' => $inventories]);
         }
 
-        return view('Admin.inventory', [
+        return view('User.inventory', [
             'title' => 'Inventory',
             'inventories' => $inventories,
             'sortType1' => $sortType1, // Menyimpan nilai dropdown ke view
             'sortType2' => $sortType2, // Menyimpan nilai dropdown ke view
-            'activePage' => 'Admin.inventory',
+            'activePage' => 'User.inventory',
         ]);
     }
 

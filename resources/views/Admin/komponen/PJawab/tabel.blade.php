@@ -22,47 +22,58 @@ use Carbon\Carbon;
         @method('DELETE')
         <table class="w-full text-left table-auto min-w-max mb-16">
             <thead>
-                <tr class="border-b border-slate-300 bg-slate-50">
-                    <th class="text-sm font-bold leading-none text-center text-slate-500">NO</th>
-                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Produk</th>
-                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Number</th>
-                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama Inventory</th>
-                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Bidang</th>
-                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Penanggung Jawab</th>
-                    <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
+                <tr class="border border-slate-950">
+                    <th
+                        class="text-sm border-l border-b border-slate-950 font-bold leading-none text-center text-slate-950">
+                        NO</th>
+                    <th class="p-4 border-b border-slate-950 text-sm font-bold leading-none text-center text-slate-950">
+                        Produk</th>
+                    <th class="p-4 border-b border-slate-950 text-sm font-bold leading-none text-center text-slate-950">
+                        ID
+                        Number</th>
+                    <th class="p-4 border-b border-slate-950 text-sm font-bold leading-none text-center text-slate-950">
+                        Nama Inventaris</th>
+                    <th class="p-4 border-b border-slate-950 text-sm font-bold leading-none text-center text-slate-950">
+                        Bidang</th>
+                    <th class="p-4 border-b border-slate-950 text-sm font-bold leading-none text-center text-slate-950">
+                        Penanggung Jawab</th>
+                    <th
+                        class="p-4 border-b border-r border-slate-950 text-sm font-bold leading-none text-center text-slate-950">
+                        Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($penanggung_jawabs as $penanggungjawab)
+                @forelse ($penanggung_jawabs as $penanggungjawab)
                     <tr class="hover:bg-slate-50 border-gray-400">
-                        <td class="p-4 border-b border-slate-200 text-center">{{ $loop->iteration }}</td>
-                        <td class="p-4 border-b border-slate-200 text-center">
+                        <td class="p-4 border-l border-b border-slate-950 text-center">{{ $loop->iteration }}</td>
+                        <td class="p-4 border-b border-slate-950 text-center">
                             <div class="gambar">
                                 <img src="{{ asset('storage/' . $penanggungjawab->image_path) }}"
                                     alt="{{ $penanggungjawab->name }}" class="w-16 h-16 object-cover rounded" />
                             </div>
                         </td>
-                        <td class="p-4 border-b border-slate-200 text-center">
+                        <td class="p-4 border-b border-slate-950 text-center">
                             <p class="font-semibold text-sm text-slate-800">{{ $penanggungjawab->ID_Produk }}</p>
                         </td>
-                        <td class="p-4 border-b border-slate-200 text-center">
+                        <td class="p-4 border-b border-slate-950 text-center">
                             <p class="font-semibold text-sm text-slate-800">{{ $penanggungjawab->name }}</p>
                         </td>
-                        <td class="p-4 text-center border-b border-slate-200">
-                            <p class="text-sm text-slate-500">{{ $penanggungjawab->Bidang }}</p>
+                        <td class="p-4 border-b border-slate-950 text-center">
+                            <p class="text-sm text-slate-800">{{ $penanggungjawab->Bidang }}</p>
                         </td>
-                        <td class="p-4 text-center border-b border-slate-200">
-                            <p class="text-sm text-slate-500">{{ $penanggungjawab->penanggung_jawab }}</p>
+                        <td class="p-4 border-b border-slate-950 text-center">
+                            <p class="text-sm text-slate-800">{{ $penanggungjawab->penanggung_jawab }}</p>
                         </td>
-                        <td class="p-4 text-center border-b border-slate-200">
-                            <button type="button" class="text-slate-500 hover:text-slate-700"
+                        <td class="p-4 border-b border-r border-slate-950 text-center">
+                            <button type="button"
+                                class="text-white p-3 bg-blue-600 hover:bg-white border rounded-lg border-blue-600 hover:text-slate-950"
                                 onclick="toggleDetails('accordion-color-body-{{ $penanggungjawab->id }}')">
                                 Details
                             </button>
                         </td>
                     </tr>
                     <tr id="accordion-color-body-{{ $penanggungjawab->id }}" class="hidden border-gray-400">
-                        <td colspan="6" class="p-4 border-b border-slate-200">
+                        <td colspan="7" class="p-4 border border-slate-950">
                             <div class="flex">
                                 <div class="w-1/4">
                                     <img src="{{ asset('storage/' . $penanggungjawab->image_path) }}"
@@ -109,7 +120,7 @@ use Carbon\Carbon;
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
-                                                class="border border-orange-500 font-bold text-orange-800 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-orange-500">
+                                                class="border border-red-500 font-bold text-red-700 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-red-500">
                                                 Hapus
                                             </button>
                                         </form>
@@ -118,18 +129,94 @@ use Carbon\Carbon;
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr>
+                        <td colspan="7" class="text-center py-6 text-slate-500">
+                            <strong>Tidak ada data yang tersedia.</strong>
+                        </td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
+        <!-- Pagination -->
+        <div class="flex justify-between items-center px-6 py-4 bg-gray-50">
+            <div class="text-sm text-gray-500">
+                Menampilkan
+                <b>{{ $penanggung_jawabs->firstItem() ?? 0 }}-{{ $penanggung_jawabs->lastItem() ?? 0 }}</b> dari
+                {{ $penanggung_jawabs->total() }}
+            </div>
+            <div class="flex space-x-2 items-center">
+                @if ($penanggung_jawabs->onFirstPage())
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-gray-400 bg-white border border-gray-200 rounded cursor-not-allowed">
+                        Prev
+                    </button>
+                @else
+                    <a href="{{ $penanggung_jawabs->previousPageUrl() }}"
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                        Prev
+                    </a>
+                @endif
+
+                @foreach ($penanggung_jawabs->getUrlRange(1, $penanggung_jawabs->lastPage()) as $page => $url)
+                    @if ($page == $penanggung_jawabs->currentPage())
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
+                            {{ $page }}
+                        </button>
+                    @else
+                        <a href="{{ $url }}"
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            {{ $page }}
+                        </a>
+                    @endif
+                @endforeach
+
+                @if ($penanggung_jawabs->hasMorePages())
+                    <a href="{{ $penanggung_jawabs->nextPageUrl() }}"
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                        Next
+                    </a>
+                @else
+                    <button
+                        class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-gray-400 bg-white border border-gray-200 rounded cursor-not-allowed">
+                        Next
+                    </button>
+                @endif
+            </div>
+        </div>
     </div>
+    </form>
+</div>
 </div>
 
 <script>
+    function toggleDeleteButton() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const deleteButton = document.getElementById('deleteButton');
+
+        // Enable or disable the delete button based on checkbox selection
+        deleteButton.disabled = !Array.from(checkboxes).some(checkbox => checkbox.checked);
+    }
+
+    function submitDeleteForm() {
+        const form = document.getElementById('deleteForm');
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+
+        // Confirm deletion
+        if (checkboxes.length === 0) {
+            alert('Silakan pilih setidaknya satu item untuk dihapus.');
+            return;
+        }
+
+        // If checkboxes are selected, submit the form
+        if (confirm('Anda yakin ingin menghapus item yang dipilih?')) {
+            form.submit();
+        }
+    }
+
     function toggleDetails(id) {
         const detailsRow = document.getElementById(id);
         detailsRow.classList.toggle('hidden');
-        detailsRow.classList.toggle('transition-all');
-        detailsRow.classList.toggle('duration-300');
-        detailsRow.classList.toggle('ease-in-out');
     }
 </script>

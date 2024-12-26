@@ -39,8 +39,8 @@ class PeminjamController extends Controller
             }
         }
 
-        // Ambil data peminjam
-        $peminjams = $query->get();
+        // Ambil data dan paginate
+    $peminjams = $query->paginate(10);
 
         // Cek apakah permintaan AJAX
         if ($request->ajax()) {
@@ -53,6 +53,52 @@ class PeminjamController extends Controller
             'sortType1' => $sortType1,
             'sortType2' => $sortType2,
             'activePage' => 'Admin.peminjam',
+        ]);
+    }
+
+    public function indexUser(Request $request)
+    {
+        // Ambil parameter sorting
+        $sortType1 = $request->input('sort_type1', 'Sort by'); // Nilai default
+        $sortType2 = $request->input('sort_type2', 'Status'); // Nilai default
+
+        // Query dasar
+        $query = Peminjam::query();
+
+        // Apply sort based on the dropdown choices
+        if ($sortType1 && $sortType1 !== 'Sort by') {
+            switch ($sortType1) {
+                case 'Barang':
+                case 'Kendaraan':
+                case 'Ruangan':
+                    $query->where('category', $sortType1);
+                    break;
+            }
+        }
+
+        if ($sortType2 && $sortType2 !== 'Status') {
+            switch ($sortType2) {
+                case 'Dikembalikan':
+                case 'Dipinjam':
+                    $query->where('status', $sortType2);
+                    break;
+            }
+        }
+
+        // Ambil data peminjam
+        $peminjams = $query->paginate(10);
+
+        // Cek apakah permintaan AJAX
+        if ($request->ajax()) {
+            return view('partials.peminjamTable', ['peminjams' => $peminjams]);
+        }
+
+        return view('User.peminjam', [
+            'title' => 'Riwayat',
+            'peminjams' => $peminjams,
+            'sortType1' => $sortType1,
+            'sortType2' => $sortType2,
+            'activePage' => 'User.peminjam',
         ]);
     }
 
@@ -85,8 +131,8 @@ class PeminjamController extends Controller
             }
         }
 
-        // Ambil data peminjam yang sudah dihapus (soft deleted)
-        $peminjams = $query->get();
+        // Ambil data dan paginate
+    $peminjams = $query->paginate(10);
 
         return view('Admin.komponen.riwayat.datasoft', [
             'title' => 'Riwayat Hapus Data',

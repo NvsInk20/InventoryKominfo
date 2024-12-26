@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riwayat</title>
     <!-- Alpine.js -->
+    <link rel="icon" href="img/kominfo.jpg">
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Flowbite CSS -->
     @vite('resources/css/app.css')
@@ -14,12 +15,12 @@
 </head>
 
 <body>
-    <x-layout>
+    <x-layoutUser>
         <x-slot:title>{{ $title }}</x-slot:title>
-        @include('komponen.riwayat.dropdown')
-        @include('komponen.riwayat.tabel')
+        @include('User.komponen.riwayat.dropdown')
+        @include('User.komponen.riwayat.tabel')
 
-    </x-layout>
+    </x-layoutUser>
     <!-- JavaScript untuk Toggle Details -->
     <script>
         function toggleDetails(rowId) {

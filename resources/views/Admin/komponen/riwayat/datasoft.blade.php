@@ -22,36 +22,36 @@ use Carbon\Carbon;
             class="relative flex flex-col w-full h-full overflow-x-auto text-green-700 bg-white shadow-md rounded-lg bg-clip-border">
             <table class="w-full text-left table-auto min-w-max mb-16">
                 <thead>
-                    <tr class="border-b border-slate-300 bg-slate-50">
-                        <th class="text-sm font-bold leading-none text-center text-slate-500">NO</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Produk</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">No. Telp</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Peminjam</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Status</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
+                    <tr class="border border-slate-950 bg-slate-50">
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">NO</th>
+                        <th class="p-5 text-sm font-bold leading-none text-center text-slate-950">Produk</th>
+                        <th class="p-5 text-sm font-bold leading-none text-center text-slate-950">No. Telp</th>
+                        <th class="p-5 text-sm font-bold leading-none text-center text-slate-950">Nama</th>
+                        <th class="p-5 text-sm font-bold leading-none text-center text-slate-950">Peminjam</th>
+                        <th class="p-5 text-sm font-bold leading-none text-center text-slate-950">Status</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($peminjams as $pinjam)
-                        <tr class="hover:bg-slate-50 border-gray-400">
-                            <td class="p-4 border-b border-slate-200 text-center">{{ $loop->iteration }}</td>
-                            <td class="p-4 border-b border-slate-200 text-center">
+                    @forelse ($peminjams as $pinjam)
+                        <tr class="hover:bg-slate-50 border-l border-b border-slate-950">
+                            <td class="p-4 border-b border-slate-950 text-center">{{ $loop->iteration }}</td>
+                            <td class="p-4 border-b border-slate-950 text-center">
                                 <div class="gambar">
                                     <img src="{{ asset('storage/' . $pinjam->image_path) }}" alt="{{ $pinjam->name }}"
                                         class="w-16 h-16 object-cover rounded" />
                                 </div>
                             </td>
-                            <td class="p-4 border-b border-slate-200 text-center">
+                            <td class="p-4 border-b border-slate-950 text-center">
                                 <p class="font-semibold text-sm text-slate-800">{{ $pinjam->phone_number }}</p>
                             </td>
-                            <td class="p-4 border-b border-slate-200 text-center">
+                            <td class="p-4 border-b border-slate-950 text-center">
                                 <p class="font-semibold text-sm text-slate-800">{{ $pinjam->name }}</p>
                             </td>
-                            <td class="p-4 text-center border-b border-slate-200">
-                                <p class="text-sm text-slate-500">{{ $pinjam->nama_peminjam }}</p>
+                            <td class="p-4 text-center border-b border-slate-950">
+                                <p class="text-sm text-slate-800">{{ $pinjam->nama_peminjam }}</p>
                             </td>
-                            <td class="p-4 text-center border-b border-slate-200">
+                            <td class="p-4 text-center border-b border-slate-950">
                                 @if ($pinjam->status == 'Dikembalikan')
                                     <button class="bg-green-500 rounded-xl py-2 px-4 text-white">
                                         <i class="fas fa-check text-white mr-2"></i> {{ $pinjam->status }}
@@ -62,7 +62,7 @@ use Carbon\Carbon;
                                     </button>
                                 @endif
                             </td>
-                            <td class="p-4 text-center border-b border-slate-200 flex">
+                            <td class="p-4 text-center border-r border-slate-950 flex">
                                 <form action="{{ route('peminjam.restore', $pinjam->id) }}" method="POST"
                                     id="restoreForm-{{ $pinjam->id }}"
                                     onsubmit="return confirmRestore(event, '{{ $pinjam->id }}');">
@@ -78,16 +78,70 @@ use Carbon\Carbon;
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                        class="border border-orange-500 font-bold text-orange-800 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-orange-500">
+                                        class="border border-red-500 font-bold text-red-700 rounded-md px-4 py-2 m-2 hover:text-white hover:bg-red-500">
                                         Hapus Permanent
                                     </button>
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center py-6 text-slate-500">
+                                <strong>Tidak ada data yang tersedia.</strong>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            <!-- Pagination -->
+            <div class="flex justify-between items-center px-6 py-4 bg-gray-50">
+                <div class="text-sm text-gray-500">
+                    Menampilkan <b>{{ $peminjams->firstItem() ?? 0 }}-{{ $peminjams->lastItem() ?? 0 }}</b> dari
+                    {{ $peminjams->total() }}
+                </div>
+                <div class="flex space-x-2 items-center">
+                    @if ($peminjams->onFirstPage())
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-gray-400 bg-white border border-gray-200 rounded cursor-not-allowed">
+                            Prev
+                        </button>
+                    @else
+                        <a href="{{ $peminjams->previousPageUrl() }}"
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            Prev
+                        </a>
+                    @endif
+
+                    @foreach ($peminjams->getUrlRange(1, $peminjams->lastPage()) as $page => $url)
+                        @if ($page == $peminjams->currentPage())
+                            <button
+                                class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
+                                {{ $page }}
+                            </button>
+                        @else
+                            <a href="{{ $url }}"
+                                class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                                {{ $page }}
+                            </a>
+                        @endif
+                    @endforeach
+
+                    @if ($peminjams->hasMorePages())
+                        <a href="{{ $peminjams->nextPageUrl() }}"
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            Next
+                        </a>
+                    @else
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-gray-400 bg-white border border-gray-200 rounded cursor-not-allowed">
+                            Next
+                        </button>
+                    @endif
+                </div>
+            </div>
         </div>
+        </form>
+    </div>
     </div>
 
     <script>

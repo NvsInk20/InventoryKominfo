@@ -16,6 +16,12 @@ class DashboardController extends Controller
             'title' => 'Dashboard',
         ]);
     }
+    public function indexUser()
+    {
+        return view('User.dashboard', [
+            'title' => 'Dashboard',
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

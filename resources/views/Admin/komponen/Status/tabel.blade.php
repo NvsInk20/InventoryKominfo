@@ -36,22 +36,23 @@ use Carbon\Carbon;
             @method('DELETE')
             <table class="w-full text-left table-auto min-w-max mb-16">
                 <thead>
-                    <tr class="border-b border-slate-300 bg-slate-50">
-                        <th class="text-sm font-bold leading-none text-center text-slate-500">NO</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Produk</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">ID Number</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Nama</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Jumlah</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Status</th>
-                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-500">Aksi</th>
+                    <tr class="border border-slate-950 bg-slate-50">
+                        <th class="text-sm font-bold leading-none text-center text-slate-950">NO</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">Produk</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">ID Number</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">Nama</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">Jumlah</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">Status</th>
+                        <th class="p-4 text-sm font-bold leading-none text-center text-slate-950">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($inventories as $inventory)
+                    @forelse($inventories as $inventory)
                         <tr class="hover:bg-slate-50 border-2px border-gray-400">
-                            <td class="p-4 flex-1 border-b border-slate-200 py-5 text-center">{{ $loop->iteration }}
+                            <td class="p-4 border-l flex-1 border-b border-slate-950 py-5 text-center">
+                                {{ $loop->iteration }}
                             </td>
-                            <td class="p-4 flex-1 border-b border-slate-200 py-5">
+                            <td class="p-4 flex-1 border-b border-slate-950 py-5">
                                 <div class="gambar">
                                     <label class="relative flex cursor-pointer items-center rounded-full p-3"
                                         for="checkbox{{ $inventory->id }}" data-ripple-dark="true">
@@ -64,16 +65,16 @@ use Carbon\Carbon;
                                 </div>
                             </td>
 
-                            <td class="p-4 border-b border-slate-200 text-center py-5">
+                            <td class="p-4 border-b border-slate-950 text-center py-5">
                                 <p class="block font-semibold text-sm text-slate-800">{{ $inventory->id_number }}</p>
                             </td>
-                            <td class="p-4 text-center border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">{{ $inventory->name }}</p>
+                            <td class="p-4 text-center border-b border-slate-950 py-5">
+                                <p class="text-sm text-slate-800">{{ $inventory->name }}</p>
                             </td>
-                            <td class="p-4 text-center border-b border-slate-200 py-5">
-                                <p class="text-sm text-slate-500">{{ $inventory->quantity }}</p>
+                            <td class="p-4 text-center border-b border-slate-950 py-5">
+                                <p class="text-sm text-slate-800">{{ $inventory->quantity }}</p>
                             </td>
-                            <td class="p-4 border-b text-center border-slate-200 py-5">
+                            <td class="p-4 border-b text-center border-slate-950 py-5">
                                 @if ($inventory->status == 'Tersedia')
                                     <button
                                         class="items-center justify-center bg-blue-600 rounded-xl text-center py-2 px-4 ml-6 max-w-max text-white">
@@ -86,8 +87,9 @@ use Carbon\Carbon;
                                     </button>
                                 @endif
                             </td>
-                            <td class="p-4 text-center border-b border-slate-200 py-5">
-                                <button type="button" class="text-slate-500 hover:text-slate-700"
+                            <td class="p-4 text-center border-r border-b border-slate-950 py-5">
+                                <button type="button"
+                                    class="text-white p-3 bg-blue-600 hover:bg-white border rounded-lg border-blue-600 hover:text-slate-950"
                                     onclick="toggleDetails('accordion-color-body-{{ $inventory->id }}')">
                                     Details
                                 </button>
@@ -95,7 +97,7 @@ use Carbon\Carbon;
                         </tr>
                         <tr id="accordion-color-body-{{ $inventory->id }}"
                             class="hidden collapsible-row border-2px border-gray-400">
-                            <td colspan="6" class="p-4 border-b border-slate-200">
+                            <td colspan="7" class="p-4 border border-slate-950">
                                 <div class="flex">
                                     <!-- Bagian gambar -->
                                     <div class="w-1/4">
@@ -143,7 +145,7 @@ use Carbon\Carbon;
                                             </button>
 
                                             <button type="button"
-                                                class="border border-orange-500 font-bold text-orange-800 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-orange-500 focus:outline-none focus:shadow-outline">
+                                                class="border border-orange-500 font-bold text-orange-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-orange-500 focus:outline-none focus:shadow-outline">
                                                 <a href="{{ route('print.pdf', ['id' => $inventory->id]) }}"
                                                     class="flex items-center">
                                                     Cetak PDF
@@ -155,11 +157,64 @@ use Carbon\Carbon;
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center py-6 text-slate-500">
+                                <strong>Tidak ada data yang tersedia.</strong>
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        </form>
+            <!-- Pagination -->
+            <div class="flex justify-between items-center px-6 py-4 bg-gray-50">
+                <div class="text-sm text-gray-500">
+                    Menampilkan <b>{{ $inventories->firstItem() ?? 0 }}-{{ $inventories->lastItem() ?? 0 }}</b> dari
+                    {{ $inventories->total() }}
+                </div>
+                <div class="flex space-x-2 items-center">
+                    @if ($inventories->onFirstPage())
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-gray-400 bg-white border border-gray-200 rounded cursor-not-allowed">
+                            Prev
+                        </button>
+                    @else
+                        <a href="{{ $inventories->previousPageUrl() }}"
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            Prev
+                        </a>
+                    @endif
+
+                    @foreach ($inventories->getUrlRange(1, $inventories->lastPage()) as $page => $url)
+                        @if ($page == $inventories->currentPage())
+                            <button
+                                class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-white bg-slate-800 border border-slate-800 rounded hover:bg-slate-600 hover:border-slate-600 transition duration-200 ease">
+                                {{ $page }}
+                            </button>
+                        @else
+                            <a href="{{ $url }}"
+                                class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                                {{ $page }}
+                            </a>
+                        @endif
+                    @endforeach
+
+                    @if ($inventories->hasMorePages())
+                        <a href="{{ $inventories->nextPageUrl() }}"
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-slate-500 bg-white border border-slate-200 rounded hover:bg-slate-50 hover:border-slate-400 transition duration-200 ease">
+                            Next
+                        </a>
+                    @else
+                        <button
+                            class="px-3 py-1 min-w-9 min-h-9 text-sm font-normal text-gray-400 bg-white border border-gray-200 rounded cursor-not-allowed">
+                            Next
+                        </button>
+                    @endif
+                </div>
+            </div>
     </div>
+    </form>
+</div>
 </div>
 
 <script>

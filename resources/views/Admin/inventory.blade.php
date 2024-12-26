@@ -9,7 +9,7 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <!-- Flowbite CSS -->
     @vite('resources/css/app.css')
-    <link rel="icon" href="/images/logo.png">
+    <link rel="icon" href="img/kominfo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link

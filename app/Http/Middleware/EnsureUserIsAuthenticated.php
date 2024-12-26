@@ -16,7 +16,7 @@ class EnsureUserIsAuthenticated
         // Cek apakah pengguna sudah login
         if (!Auth::check()) {
             // Arahkan ke halaman login jika belum login
-            return redirect()->route('login');
+            return redirect()->route('login')->withErrors(['login' => 'Silakan login untuk mengakses halaman ini.']);
         }
 
         // Lanjutkan ke request berikutnya jika sudah login

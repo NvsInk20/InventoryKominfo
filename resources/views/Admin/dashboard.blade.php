@@ -4,7 +4,7 @@
     <div class="flex max-w-max mt-6">
         <h3 class="absolute text-5xl font-bold text-[#3489D2] leading-tight py-8 max-w-screen-md break-words animate__animated animate__fadeInLeft"
             style="text-shadow: 8px 12px 5px rgba(125, 125, 125, 0.5);">
-            Sistem Informasi <br> Penanggung Jawab <br> Inventory
+            Sistem Informasi <br> Penanggung Jawab <br> Inventaris
         </h3>
         <img class="h-130 w-50 ml-96 -mt-40 animate__animated animate__fadeInBottomRight" src="/img/sapi.png">
     </div>

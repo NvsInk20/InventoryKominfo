@@ -17,21 +17,24 @@ class LoginController extends Controller
     }
 
     public function authenticate(Request $request)
-    {
-        $validatedData = $request->validate([
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+{
+    $credentials = $request->validate([
+    'username' => 'required|string', // Pastikan ini sesuai dengan kolom di database
+    'password' => 'required|string',
+]);
 
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
 
-        return back()->withErrors([
-            'login' => 'Username atau Password tidak terdaftar.'
-        ])->onlyInput('username');
-    }
+    if (Auth::guard('admin')->attempt($credentials)) {
+    $request->session()->regenerate();
+    return redirect()->intended('/dashboard');
+}
+
+
+    return back()->withErrors([
+        'login' => 'Username atau password salah.',
+    ]);
+}
+
 
     public function logout(Request $request)
     {

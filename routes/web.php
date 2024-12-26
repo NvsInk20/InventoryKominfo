@@ -13,37 +13,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::middleware('auth')->group(function () {
+
+Route::middleware('guest')->group(function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::get('/register', [register::class, 'index']);
+    Route::post('/register', [register::class, 'store']);
+});
+    Route::middleware(['auth:admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/inventory', [InventoryController::class, 'index']);
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/riwayat', [PeminjamController::class, 'index']);
     Route::get('/penanggungjawab', [PenanggungJawabController::class, 'index']);
-});
 
-Route::get('/register', [register::class, 'index']);
-Route::post('/register', [register::class, 'store']);
+    // Status Barang (Inventory)
+    Route::get('/inventory', [InventoryController::class, 'index'])->name('Admin.inventory');
+    Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
+    Route::delete('/inventory/delete-selected', [InventoryController::class, 'deleteSelected'])->name('inventory.deleteSelected');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+    Route::get('/inventory/add-items', function () {
+        return view('Admin.formAdd', ['title' => 'Tambah Data']);
+    });
+    Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
+    Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inventory.update');
 
-Route::get('/dashboard', function () {
-    return view('Admin.dashboard', ['title' => 'Dashboard']);
-});
-
-// Status Barang (Inventory)
-Route::get('/inventory', [InventoryController::class, 'index'])->name('Admin.inventory');
-Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
-Route::delete('/inventory/delete-selected', [InventoryController::class, 'deleteSelected'])->name('inventory.deleteSelected');
-
-Route::get('/inventory/add-items', function () {
-    return view('Admin.formAdd', ['title' => 'Tambah Data']);
-});
-Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
-Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inventory.update');
-
-// Rute Peminjam (Riwayat)
+    // Rute Peminjam (Riwayat)
     Route::get('/riwayat', [PeminjamController::class, 'index'])->name('Admin.peminjam');
     Route::get('/riwayat/datasoft', [PeminjamController::class, 'datasoft'])->name('peminjam.datasoft');
     Route::post('/riwayat', [PeminjamController::class, 'store'])->name('peminjam.store');
@@ -65,7 +59,7 @@ Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inv
     Route::get('/penanggungjawab/{id}/edit', [PenanggungJawabController::class, 'edit'])->name('PJ.edit');
     Route::put('/penanggungjawab/{id}', [PenanggungJawabController::class, 'update'])->name('PJ.update');
     Route::delete('/penanggungjawab/{id}/destroy', [PenanggungJawabController::class, 'destroy'])->name('PJ.destroy');
-
+});
 // Cetak PDF
 Route::get('/print-pdf/{id}', [InventoryController::class, 'printPDF'])->name('print.pdf');
 
@@ -73,3 +67,10 @@ Route::get('/print-pdf/{id}', [InventoryController::class, 'printPDF'])->name('p
 // Route::get('/penanggung jawab', function () {
 //     return view('Admin.PJ', ['title' => 'Penanggung Jawab']);
 // });
+// PAGES USER
+
+// Cetak PDF
+Route::get('/print-pdf/{id}', [InventoryController::class, 'printPDF'])->name('print.pdf');
+Route::get('/Dashboard-Inventaris', [DashboardController::class, 'indexUser'])->name('user.dashboard');
+Route::get('/Inventory-Barang', [InventoryController::class, 'indexUser'])->name('user.inventory');
+Route::get('/penanggung-jawab', [PenanggungJawabController::class, 'indexUser'])->name('Pj.User');

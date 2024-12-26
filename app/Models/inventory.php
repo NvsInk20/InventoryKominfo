@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Inventory extends Model
 {
+    // Menetapkan nama tabel yang digunakan oleh model ini
+    protected $table = 'inventories';
     use HasFactory;
     use SoftDeletes;
 

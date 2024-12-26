@@ -15,9 +15,9 @@
 <body class="h-full">
 
     <div class="min-h-full">
-        <x-navbar></x-navbar>
+        <x-navbarUser></x-navbarUser>
 
-        <x-header>{{ $title }}</x-header>
+        <x-headerUser>{{ $title }}</x-headerUser>
 
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -25,7 +25,7 @@
             </div>
         </main>
 
-        <x-footer></x-footer>
+        <x-footerUser></x-footerUser>
     </div>
 </body>
 

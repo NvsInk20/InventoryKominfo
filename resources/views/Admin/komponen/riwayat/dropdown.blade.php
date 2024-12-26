@@ -22,17 +22,17 @@
                 <div x-show="openSort1" x-transition class="dropdown-content">
                     <div class="px-2 pt-2 pb-2 text-black rounded-md shadow-lg bg-white">
                         <div class="flex flex-col">
-                            <a @click.prevent="if (sortType1 !== 'Barang') { sortType1='Barang'; openSort1=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="if (sortType1 !== 'Barang') { sortType1='Barang'; openSort1=false; $nextTick(() => $el.closest('form').submit()) }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Barang</p>
                             </a>
-                            <a @click.prevent="if (sortType1 !== 'Kendaraan') { sortType1='Kendaraan'; openSort1=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="if (sortType1 !== 'Kendaraan') { sortType1='Kendaraan'; openSort1=false; $nextTick(() => $el.closest('form').submit()) }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Kendaraan</p>
                             </a>
-                            <a @click.prevent="if (sortType1 !== 'Ruangan') { sortType1='Ruangan'; openSort1=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="if (sortType1 !== 'Ruangan') { sortType1='Ruangan'; openSort1=false; $nextTick(() => $el.closest('form').submit()) }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Ruangan</p>
@@ -61,12 +61,12 @@
                 <div x-show="openSort2" x-transition class="dropdown-content">
                     <div class="px-2 pt-2 pb-2 text-black rounded-md shadow-lg bg-white">
                         <div class="flex flex-col">
-                            <a @click.prevent="if (sortType2 !== 'Dikembalikan') { sortType2='Dikembalikan'; openSort2=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="if (sortType2 !== 'Dikembalikan') { sortType2='Dikembalikan'; openSort2=false; $nextTick(() => $el.closest('form').submit()) }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Dikembalikan</p>
                             </a>
-                            <a @click.prevent="if (sortType2 !== 'Dipinjam') { sortType2='Dipinjam'; openSort2=false; $event.target.closest('form').submit(); }"
+                            <a @click.prevent="if (sortType2 !== 'Dipinjam') { sortType2='Dipinjam'; openSort2=false; $nextTick(() => $el.closest('form').submit()) }"
                                 class="flex flex-row items-start rounded-lg bg-transparent p-2 hover:bg-gray-200"
                                 href="#">
                                 <p class="font-semibold">Dipinjam</p>

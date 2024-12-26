@@ -28,7 +28,7 @@
         </div>
     </div>
     <!-- component -->
-    <form action="/login" method="POST">
+    <form action="{{ route('login') }}" method="POST">
         @csrf
         <!-- component -->
         <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center mt-4 sm:py-12">
